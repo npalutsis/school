@@ -1,0 +1,16 @@
+Original DFA Machine by Nick Palutsis
+U,N,D
+q0,q1,q2,q3
+q1
+q3
+q0,D,q0
+q0,U,q1
+q0,N,q2
+q1,U,q0
+q1,D,q3
+q2,D,q1
+q2,U,q2
+q2,N,q3
+q3,D,q0
+q3,U,q1
+q3,N,q3

@@ -1,0 +1,808 @@
+M1 - Accepted
+=============
+
+Enter the name of a textfile with the rule set for a dpda: m1
+
+   SOURCE: M1: DFA ported from Project 1 M1
+ ALPHABET: 0,1
+    STACK: 0,1
+   STATES: q1,q2,q3
+    START: q1
+ACCEPTING: q2
+
+RULES:
+ 1: q1,0,~|q1,~
+ 2: q1,1,~|q2,~
+ 3: q2,1,~|q2,~
+ 4: q2,0,~|q3,~
+ 5: q3,0,~|q2,~
+ 6: q3,1,~|q2,~
+
+Enter the name of an input test file: m1accepted
+
+String: 1
+ 1#2: q1,1,~|q2,~
+Accepted
+
+String: 01
+ 1#1: q1,0,~|q1,~
+ 2#2: q1,1,~|q2,~
+Accepted
+
+String: 11
+ 1#2: q1,1,~|q2,~
+ 2#3: q2,1,~|q2,~
+Accepted
+
+String: 0101010101
+ 1#1: q1,0,~|q1,~
+ 2#2: q1,1,~|q2,~
+ 3#4: q2,0,~|q3,~
+ 4#6: q3,1,~|q2,~
+ 5#4: q2,0,~|q3,~
+ 6#6: q3,1,~|q2,~
+ 7#4: q2,0,~|q3,~
+ 8#6: q3,1,~|q2,~
+ 9#4: q2,0,~|q3,~
+10#6: q3,1,~|q2,~
+Accepted
+
+String: 100
+ 1#2: q1,1,~|q2,~
+ 2#4: q2,0,~|q3,~
+ 3#5: q3,0,~|q2,~
+Accepted
+
+String: 0100
+ 1#1: q1,0,~|q1,~
+ 2#2: q1,1,~|q2,~
+ 3#4: q2,0,~|q3,~
+ 4#5: q3,0,~|q2,~
+Accepted
+
+String: 110000
+ 1#2: q1,1,~|q2,~
+ 2#3: q2,1,~|q2,~
+ 3#4: q2,0,~|q3,~
+ 4#5: q3,0,~|q2,~
+ 5#4: q2,0,~|q3,~
+ 6#5: q3,0,~|q2,~
+Accepted
+
+String: 0101000000
+ 1#1: q1,0,~|q1,~
+ 2#2: q1,1,~|q2,~
+ 3#4: q2,0,~|q3,~
+ 4#6: q3,1,~|q2,~
+ 5#4: q2,0,~|q3,~
+ 6#5: q3,0,~|q2,~
+ 7#4: q2,0,~|q3,~
+ 8#5: q3,0,~|q2,~
+ 9#4: q2,0,~|q3,~
+10#5: q3,0,~|q2,~
+Accepted
+
+M1 - Rejected
+=============
+
+Enter the name of a textfile with the rule set for a dpda: m1
+
+   SOURCE: M1: DFA ported from Project 1 M1
+ ALPHABET: 0,1
+    STACK: 0,1
+   STATES: q1,q2,q3
+    START: q1
+ACCEPTING: q2
+
+RULES:
+ 1: q1,0,~|q1,~
+ 2: q1,1,~|q2,~
+ 3: q2,1,~|q2,~
+ 4: q2,0,~|q3,~
+ 5: q3,0,~|q2,~
+ 6: q3,1,~|q2,~
+
+Enter the name of an input test file: m1rejected
+
+String: 0
+ 1#1: q1,0,~|q1,~
+Rejected
+
+String: 010
+ 1#1: q1,0,~|q1,~
+ 2#2: q1,1,~|q2,~
+ 3#4: q2,0,~|q3,~
+Rejected
+
+String: 11000
+ 1#2: q1,1,~|q2,~
+ 2#3: q2,1,~|q2,~
+ 3#4: q2,0,~|q3,~
+ 4#5: q3,0,~|q2,~
+ 5#4: q2,0,~|q3,~
+Rejected
+
+String: 01010101010
+ 1#1: q1,0,~|q1,~
+ 2#2: q1,1,~|q2,~
+ 3#4: q2,0,~|q3,~
+ 4#6: q3,1,~|q2,~
+ 5#4: q2,0,~|q3,~
+ 6#6: q3,1,~|q2,~
+ 7#4: q2,0,~|q3,~
+ 8#6: q3,1,~|q2,~
+ 9#4: q2,0,~|q3,~
+10#6: q3,1,~|q2,~
+11#4: q2,0,~|q3,~
+Rejected
+
+String: 01000
+ 1#1: q1,0,~|q1,~
+ 2#2: q1,1,~|q2,~
+ 3#4: q2,0,~|q3,~
+ 4#5: q3,0,~|q2,~
+ 5#4: q2,0,~|q3,~
+Rejected
+
+String: 11000
+ 1#2: q1,1,~|q2,~
+ 2#3: q2,1,~|q2,~
+ 3#4: q2,0,~|q3,~
+ 4#5: q3,0,~|q2,~
+ 5#4: q2,0,~|q3,~
+Rejected
+
+String: 010100111000
+ 1#1: q1,0,~|q1,~
+ 2#2: q1,1,~|q2,~
+ 3#4: q2,0,~|q3,~
+ 4#6: q3,1,~|q2,~
+ 5#4: q2,0,~|q3,~
+ 6#5: q3,0,~|q2,~
+ 7#3: q2,1,~|q2,~
+ 8#3: q2,1,~|q2,~
+ 9#3: q2,1,~|q2,~
+10#4: q2,0,~|q3,~
+11#5: q3,0,~|q2,~
+12#4: q2,0,~|q3,~
+Rejected
+
+M2 - Accepted
+=============
+
+Enter the name of a textfile with the rule set for a dpda: m2
+
+   SOURCE: M2: Simple Palindrome with trapping
+ ALPHABET: a,b,c
+    STACK: a,b
+   STATES: A,F,T
+    START: A
+ACCEPTING: F
+
+RULES:
+ 1: A,a,~|A,a
+ 2: A,b,~|A,b
+ 3: A,c,~|F,~
+ 4: F,a,a|F,~
+ 5: F,b,b|F,~
+ 6: F,c,~|T,~
+ 7: F,a,b|T,~
+ 8: F,b,a|T,~
+
+Enter the name of an input test file: m2accepted
+
+String: c
+ 1#3: A,c,~|F,~
+Accepted
+
+String: aca
+ 1#1: A,a,~|A,a
+ 2#3: A,c,~|F,~
+ 3#4: F,a,a|F,~
+Accepted
+
+String: abcba
+ 1#1: A,a,~|A,a
+ 2#2: A,b,~|A,b
+ 3#3: A,c,~|F,~
+ 4#5: F,b,b|F,~
+ 5#4: F,a,a|F,~
+Accepted
+
+String: aabbcbbaa
+ 1#1: A,a,~|A,a
+ 2#1: A,a,~|A,a
+ 3#2: A,b,~|A,b
+ 4#2: A,b,~|A,b
+ 5#3: A,c,~|F,~
+ 6#5: F,b,b|F,~
+ 7#5: F,b,b|F,~
+ 8#4: F,a,a|F,~
+ 9#4: F,a,a|F,~
+Accepted
+
+String: abaabbcbbaaba
+ 1#1: A,a,~|A,a
+ 2#2: A,b,~|A,b
+ 3#1: A,a,~|A,a
+ 4#1: A,a,~|A,a
+ 5#2: A,b,~|A,b
+ 6#2: A,b,~|A,b
+ 7#3: A,c,~|F,~
+ 8#5: F,b,b|F,~
+ 9#5: F,b,b|F,~
+10#4: F,a,a|F,~
+11#4: F,a,a|F,~
+12#5: F,b,b|F,~
+13#4: F,a,a|F,~
+Accepted
+
+String: ac
+ 1#1: A,a,~|A,a
+ 2#3: A,c,~|F,~
+Accepted
+
+M2 - Rejected
+=============
+
+Enter the name of a textfile with the rule set for a dpda: m2
+
+   SOURCE: M2: Simple Palindrome with trapping
+ ALPHABET: a,b,c
+    STACK: a,b
+   STATES: A,F,T
+    START: A
+ACCEPTING: F
+
+RULES:
+ 1: A,a,~|A,a
+ 2: A,b,~|A,b
+ 3: A,c,~|F,~
+ 4: F,a,a|F,~
+ 5: F,b,b|F,~
+ 6: F,c,~|T,~
+ 7: F,a,b|T,~
+ 8: F,b,a|T,~
+
+Enter the name of an input test file: m2rejected
+
+String: abba
+ 1#1: A,a,~|A,a
+ 2#2: A,b,~|A,b
+ 3#2: A,b,~|A,b
+ 4#1: A,a,~|A,a
+Rejected
+
+String: acb
+ 1#1: A,a,~|A,a
+ 2#3: A,c,~|F,~
+ 3#8: F,b,a|T,~
+Rejected
+
+String: ca
+ 1#3: A,c,~|F,~
+Error: No matching rule.
+Rejected
+
+String: bbcba
+ 1#2: A,b,~|A,b
+ 2#2: A,b,~|A,b
+ 3#3: A,c,~|F,~
+ 4#5: F,b,b|F,~
+ 5#7: F,a,b|T,~
+Rejected
+
+String: baccab
+ 1#2: A,b,~|A,b
+ 2#1: A,a,~|A,a
+ 3#3: A,c,~|F,~
+ 4#6: F,c,~|T,~
+Error: No matching rule.
+Rejected
+
+M3 - Accepted
+=============
+
+Enter the name of a textfile with the rule set for a dpda: m3
+
+   SOURCE: M3:Equal as and bs', with a final $
+ ALPHABET: a,b,$
+    STACK: a,b,$
+   STATES: S,Q,Qa,Qb,Q$a,Q$b,F
+    START: S
+ACCEPTING: F
+
+RULES:
+ 1: S,~,~|Q,$
+ 2: Q,a,$|Q$a,$
+ 3: Q$a,~,~|Q,a
+ 4: Q,a,a|Qa,a
+ 5: Qa,~,~|Q,a
+ 6: Q,a,b|Q,~
+ 7: Q,b,$|Q$b,$
+ 8: Q$b,~,~|Q,b
+ 9: Q,b,a|Q,~
+10: Q,b,b|Qb,b
+11: Qb,~,~|Q,b
+12: Q,$,$|F,~
+
+Enter the name of an input test file: m3accepted
+
+String: ab$
+ 1#1: S,~,~|Q,$
+ 2#2: Q,a,$|Q$a,$
+ 3#3: Q$a,~,~|Q,a
+ 4#9: Q,b,a|Q,~
+ 5#12: Q,$,$|F,~
+Accepted
+
+String: baab$
+ 1#1: S,~,~|Q,$
+ 2#7: Q,b,$|Q$b,$
+ 3#8: Q$b,~,~|Q,b
+ 4#6: Q,a,b|Q,~
+ 5#2: Q,a,$|Q$a,$
+ 6#3: Q$a,~,~|Q,a
+ 7#9: Q,b,a|Q,~
+ 8#12: Q,$,$|F,~
+Accepted
+
+String: abbbaa$
+ 1#1: S,~,~|Q,$
+ 2#2: Q,a,$|Q$a,$
+ 3#3: Q$a,~,~|Q,a
+ 4#9: Q,b,a|Q,~
+ 5#7: Q,b,$|Q$b,$
+ 6#8: Q$b,~,~|Q,b
+ 7#10: Q,b,b|Qb,b
+ 8#11: Qb,~,~|Q,b
+ 9#6: Q,a,b|Q,~
+10#6: Q,a,b|Q,~
+11#12: Q,$,$|F,~
+Accepted
+
+String: abababab$
+ 1#1: S,~,~|Q,$
+ 2#2: Q,a,$|Q$a,$
+ 3#3: Q$a,~,~|Q,a
+ 4#9: Q,b,a|Q,~
+ 5#2: Q,a,$|Q$a,$
+ 6#3: Q$a,~,~|Q,a
+ 7#9: Q,b,a|Q,~
+ 8#2: Q,a,$|Q$a,$
+ 9#3: Q$a,~,~|Q,a
+10#9: Q,b,a|Q,~
+11#2: Q,a,$|Q$a,$
+12#3: Q$a,~,~|Q,a
+13#9: Q,b,a|Q,~
+14#12: Q,$,$|F,~
+Accepted
+
+M3 - Rejected
+=============
+
+Enter the name of a textfile with the rule set for a dpda: m3
+
+   SOURCE: M3:Equal as and bs', with a final $
+ ALPHABET: a,b,$
+    STACK: a,b,$
+   STATES: S,Q,Qa,Qb,Q$a,Q$b,F
+    START: S
+ACCEPTING: F
+
+RULES:
+ 1: S,~,~|Q,$
+ 2: Q,a,$|Q$a,$
+ 3: Q$a,~,~|Q,a
+ 4: Q,a,a|Qa,a
+ 5: Qa,~,~|Q,a
+ 6: Q,a,b|Q,~
+ 7: Q,b,$|Q$b,$
+ 8: Q$b,~,~|Q,b
+ 9: Q,b,a|Q,~
+10: Q,b,b|Qb,b
+11: Qb,~,~|Q,b
+12: Q,$,$|F,~
+
+Enter the name of an input test file: m3rejected
+
+String: a$
+ 1#1: S,~,~|Q,$
+ 2#2: Q,a,$|Q$a,$
+ 3#3: Q$a,~,~|Q,a
+Rejected
+
+String: baa$
+ 1#1: S,~,~|Q,$
+ 2#7: Q,b,$|Q$b,$
+ 3#8: Q$b,~,~|Q,b
+ 4#6: Q,a,b|Q,~
+ 5#2: Q,a,$|Q$a,$
+ 6#3: Q$a,~,~|Q,a
+Rejected
+
+String: abbab$
+ 1#1: S,~,~|Q,$
+ 2#2: Q,a,$|Q$a,$
+ 3#3: Q$a,~,~|Q,a
+ 4#9: Q,b,a|Q,~
+ 5#7: Q,b,$|Q$b,$
+ 6#8: Q$b,~,~|Q,b
+ 7#6: Q,a,b|Q,~
+ 8#7: Q,b,$|Q$b,$
+ 9#8: Q$b,~,~|Q,b
+Rejected
+
+String: aaabbba$
+ 1#1: S,~,~|Q,$
+ 2#2: Q,a,$|Q$a,$
+ 3#3: Q$a,~,~|Q,a
+ 4#4: Q,a,a|Qa,a
+ 5#5: Qa,~,~|Q,a
+ 6#4: Q,a,a|Qa,a
+ 7#5: Qa,~,~|Q,a
+ 8#9: Q,b,a|Q,~
+ 9#9: Q,b,a|Q,~
+10#9: Q,b,a|Q,~
+11#2: Q,a,$|Q$a,$
+12#3: Q$a,~,~|Q,a
+Rejected
+
+Mystery - Mystery-Test
+======================
+
+Enter the name of a textfile with the rule set for a dpda: mystery
+
+   SOURCE: Mystery DPDA
+ ALPHABET: a,b,+,-,=,#
+    STACK: a,b,c,$
+   STATES: q0,ql,qr1,qr2,qr3,qe1,qe2,qf
+    START: q0
+ACCEPTING: qf
+
+RULES:
+ 1: q0,~,~|ql,$
+ 2: ql,a,~|ql,a
+ 3: ql,+,~|qr1,~
+ 4: ql,-,~|qr2,~
+ 5: qr1,a,~|qr1,a
+ 6: qr1,=,~|qe1,~
+ 7: qe1,a,a|qe1,~
+ 8: qe1,#,$|qf,~
+ 9: qr2,a,a|qr2,~
+10: qr2,a,$|qr3,$
+11: qr3,~,~|qr2,b
+12: qr2,a,b|qr3,b
+13: qr2,=,~|qe2,~
+14: qe2,b,b|qe2,~
+15: qe2,a,a|qe2,~
+16: qe2,#,$|qf,~
+
+Enter the name of an input test file: mysteryTest
+
+String: a+a=aa#
+ 1#1: q0,~,~|ql,$
+ 2#2: ql,a,~|ql,a
+ 3#3: ql,+,~|qr1,~
+ 4#5: qr1,a,~|qr1,a
+ 5#6: qr1,=,~|qe1,~
+ 6#7: qe1,a,a|qe1,~
+ 7#7: qe1,a,a|qe1,~
+ 8#8: qe1,#,$|qf,~
+Accepted
+
+String: a-a=#
+ 1#1: q0,~,~|ql,$
+ 2#2: ql,a,~|ql,a
+ 3#4: ql,-,~|qr2,~
+ 4#9: qr2,a,a|qr2,~
+ 5#13: qr2,=,~|qe2,~
+ 6#16: qe2,#,$|qf,~
+Accepted
+
+String: a+aa=aaa#
+ 1#1: q0,~,~|ql,$
+ 2#2: ql,a,~|ql,a
+ 3#3: ql,+,~|qr1,~
+ 4#5: qr1,a,~|qr1,a
+ 5#5: qr1,a,~|qr1,a
+ 6#6: qr1,=,~|qe1,~
+ 7#7: qe1,a,a|qe1,~
+ 8#7: qe1,a,a|qe1,~
+ 9#7: qe1,a,a|qe1,~
+10#8: qe1,#,$|qf,~
+Accepted
+
+String: a-aa=b#
+ 1#1: q0,~,~|ql,$
+ 2#2: ql,a,~|ql,a
+ 3#4: ql,-,~|qr2,~
+ 4#9: qr2,a,a|qr2,~
+ 5#10: qr2,a,$|qr3,$
+ 6#11: qr3,~,~|qr2,b
+ 7#13: qr2,=,~|qe2,~
+ 8#14: qe2,b,b|qe2,~
+ 9#16: qe2,#,$|qf,~
+Accepted
+
+String: aaa+aa=aaaaa@
+ 1#1: q0,~,~|ql,$
+ 2#2: ql,a,~|ql,a
+ 3#2: ql,a,~|ql,a
+ 4#2: ql,a,~|ql,a
+ 5#3: ql,+,~|qr1,~
+ 6#5: qr1,a,~|qr1,a
+ 7#5: qr1,a,~|qr1,a
+ 8#6: qr1,=,~|qe1,~
+ 9#7: qe1,a,a|qe1,~
+10#7: qe1,a,a|qe1,~
+11#7: qe1,a,a|qe1,~
+12#7: qe1,a,a|qe1,~
+13#7: qe1,a,a|qe1,~
+Error: The input "@" is not part of the alphabet.
+Rejected
+
+String: aaa-aa=a#
+ 1#1: q0,~,~|ql,$
+ 2#2: ql,a,~|ql,a
+ 3#2: ql,a,~|ql,a
+ 4#2: ql,a,~|ql,a
+ 5#4: ql,-,~|qr2,~
+ 6#9: qr2,a,a|qr2,~
+ 7#9: qr2,a,a|qr2,~
+ 8#13: qr2,=,~|qe2,~
+ 9#15: qe2,a,a|qe2,~
+10#16: qe2,#,$|qf,~
+Accepted
+
+String: aa-aaaa=bb#
+ 1#1: q0,~,~|ql,$
+ 2#2: ql,a,~|ql,a
+ 3#2: ql,a,~|ql,a
+ 4#4: ql,-,~|qr2,~
+ 5#9: qr2,a,a|qr2,~
+ 6#9: qr2,a,a|qr2,~
+ 7#10: qr2,a,$|qr3,$
+ 8#11: qr3,~,~|qr2,b
+ 9#12: qr2,a,b|qr3,b
+10#11: qr3,~,~|qr2,b
+11#13: qr2,=,~|qe2,~
+12#14: qe2,b,b|qe2,~
+13#14: qe2,b,b|qe2,~
+14#16: qe2,#,$|qf,~
+Accepted
+
+String: aaa+=aaa#
+ 1#1: q0,~,~|ql,$
+ 2#2: ql,a,~|ql,a
+ 3#2: ql,a,~|ql,a
+ 4#2: ql,a,~|ql,a
+ 5#3: ql,+,~|qr1,~
+ 6#6: qr1,=,~|qe1,~
+ 7#7: qe1,a,a|qe1,~
+ 8#7: qe1,a,a|qe1,~
+ 9#7: qe1,a,a|qe1,~
+10#8: qe1,#,$|qf,~
+Accepted
+
+String: +aaa=aaa#
+ 1#1: q0,~,~|ql,$
+ 2#3: ql,+,~|qr1,~
+ 3#5: qr1,a,~|qr1,a
+ 4#5: qr1,a,~|qr1,a
+ 5#5: qr1,a,~|qr1,a
+ 6#6: qr1,=,~|qe1,~
+ 7#7: qe1,a,a|qe1,~
+ 8#7: qe1,a,a|qe1,~
+ 9#7: qe1,a,a|qe1,~
+10#8: qe1,#,$|qf,~
+Accepted
+
+String: -aaa=bbb#
+ 1#1: q0,~,~|ql,$
+ 2#4: ql,-,~|qr2,~
+ 3#10: qr2,a,$|qr3,$
+ 4#11: qr3,~,~|qr2,b
+ 5#12: qr2,a,b|qr3,b
+ 6#11: qr3,~,~|qr2,b
+ 7#12: qr2,a,b|qr3,b
+ 8#11: qr3,~,~|qr2,b
+ 9#13: qr2,=,~|qe2,~
+10#14: qe2,b,b|qe2,~
+11#14: qe2,b,b|qe2,~
+12#14: qe2,b,b|qe2,~
+13#16: qe2,#,$|qf,~
+Accepted
+
+String: a+=a#
+ 1#1: q0,~,~|ql,$
+ 2#2: ql,a,~|ql,a
+ 3#3: ql,+,~|qr1,~
+ 4#6: qr1,=,~|qe1,~
+ 5#7: qe1,a,a|qe1,~
+ 6#8: qe1,#,$|qf,~
+Accepted
+
+String: a-=a#
+ 1#1: q0,~,~|ql,$
+ 2#2: ql,a,~|ql,a
+ 3#4: ql,-,~|qr2,~
+ 4#13: qr2,=,~|qe2,~
+ 5#15: qe2,a,a|qe2,~
+ 6#16: qe2,#,$|qf,~
+Accepted
+
+String: +aa=bb#
+ 1#1: q0,~,~|ql,$
+ 2#3: ql,+,~|qr1,~
+ 3#5: qr1,a,~|qr1,a
+ 4#5: qr1,a,~|qr1,a
+ 5#6: qr1,=,~|qe1,~
+Error: No matching rule.
+Rejected
+
+String: aa=aa#
+ 1#1: q0,~,~|ql,$
+ 2#2: ql,a,~|ql,a
+ 3#2: ql,a,~|ql,a
+Error: No matching rule.
+Rejected
+
+String: aa+a=bbb#
+ 1#1: q0,~,~|ql,$
+ 2#2: ql,a,~|ql,a
+ 3#2: ql,a,~|ql,a
+ 4#3: ql,+,~|qr1,~
+ 5#5: qr1,a,~|qr1,a
+ 6#6: qr1,=,~|qe1,~
+Error: No matching rule.
+Rejected
+
+String: a-aa=a#
+ 1#1: q0,~,~|ql,$
+ 2#2: ql,a,~|ql,a
+ 3#4: ql,-,~|qr2,~
+ 4#9: qr2,a,a|qr2,~
+ 5#10: qr2,a,$|qr3,$
+ 6#11: qr3,~,~|qr2,b
+ 7#13: qr2,=,~|qe2,~
+Error: No matching rule.
+Rejected
+
+String: a+aa=aaa
+ 1#1: q0,~,~|ql,$
+ 2#2: ql,a,~|ql,a
+ 3#3: ql,+,~|qr1,~
+ 4#5: qr1,a,~|qr1,a
+ 5#5: qr1,a,~|qr1,a
+ 6#6: qr1,=,~|qe1,~
+ 7#7: qe1,a,a|qe1,~
+ 8#7: qe1,a,a|qe1,~
+ 9#7: qe1,a,a|qe1,~
+Rejected
+
+String: a-aa#
+ 1#1: q0,~,~|ql,$
+ 2#2: ql,a,~|ql,a
+ 3#4: ql,-,~|qr2,~
+ 4#9: qr2,a,a|qr2,~
+ 5#10: qr2,a,$|qr3,$
+ 6#11: qr3,~,~|qr2,b
+Rejected
+
+String: =a+aa=aaa#
+ 1#1: q0,~,~|ql,$
+ 3#2: ql,a,~|ql,a
+ 4#3: ql,+,~|qr1,~
+ 5#5: qr1,a,~|qr1,a
+ 6#5: qr1,a,~|qr1,a
+ 7#6: qr1,=,~|qe1,~
+ 8#7: qe1,a,a|qe1,~
+ 9#7: qe1,a,a|qe1,~
+10#7: qe1,a,a|qe1,~
+11#8: qe1,#,$|qf,~
+Accepted
+
+String: aaa+b=aa#
+ 1#1: q0,~,~|ql,$
+ 2#2: ql,a,~|ql,a
+ 3#2: ql,a,~|ql,a
+ 4#2: ql,a,~|ql,a
+ 5#3: ql,+,~|qr1,~
+Error: No matching rule.
+Rejected
+
+DPDA - Test (custom machine)
+============================
+Enter the name of a textfile with the rule set for a dpda: dpda.txt
+
+   SOURCE: Original DPDA Machine by Nick Palutsis
+ ALPHABET: w,e,r,n,d
+    STACK: a,b,c,$
+   STATES: q0,ql,q2,q3,q4
+    START: q0
+ACCEPTING: q3
+
+RULES:
+ 1: q0,~,~|q1,$
+ 2: q1,w,$|q2,a
+ 3: q1,n,$|q4,b
+ 4: q1,r,$|q3,a
+ 5: q2,e,~|q3,c
+ 6: q2,d,c|q4,~
+ 7: q3,w,~|q3,~
+ 8: q3,d,~|q3,~
+ 9: q3,e,~|q3,~
+10: q3,r,a|q0,~
+11: q3,n,~|q3,~
+12: q4,w,b|q2,c
+13: q4,d,c|q3,a
+14: q4,d,b|q1,$
+15: q4,w,c|q3,~
+16: q4,n,c|q2,~
+
+Enter the name of an input test file: test.txt
+
+String: rndrrn
+ 1#1: q0,~,~|q1,$
+ 2#4: q1,r,$|q3,a
+ 3#11: q3,n,~|q3,~
+ 4#8: q3,d,~|q3,~
+ 5#10: q3,r,a|q0,~
+ 6#1: q0,~,~|q1,$
+ 7#4: q1,r,$|q3,a
+ 8#11: q3,n,~|q3,~
+Accepted
+
+String: wdwndww
+ 1#1: q0,~,~|q1,$
+ 2#2: q1,w,$|q2,a
+Error: No matching rule.
+Rejected
+
+String: nxndee
+ 1#1: q0,~,~|q1,$
+ 2#3: q1,n,$|q4,b
+Error: The input "x" is not part of the alphabet.
+Rejected
+
+String: we
+ 1#1: q0,~,~|q1,$
+ 2#2: q1,w,$|q2,a
+ 3#5: q2,e,~|q3,c
+Accepted
+
+String: nd
+ 1#1: q0,~,~|q1,$
+ 2#3: q1,n,$|q4,b
+ 3#14: q4,d,b|q1,$
+Rejected
+
+String: render
+ 1#1: q0,~,~|q1,$
+ 2#4: q1,r,$|q3,a
+ 3#9: q3,e,~|q3,~
+ 4#11: q3,n,~|q3,~
+ 5#8: q3,d,~|q3,~
+ 6#9: q3,e,~|q3,~
+ 7#10: q3,r,a|q0,~
+Rejected
+
+String: nwenddeeee
+ 1#1: q0,~,~|q1,$
+ 2#3: q1,n,$|q4,b
+ 3#12: q4,w,b|q2,c
+ 4#5: q2,e,~|q3,c
+ 5#11: q3,n,~|q3,~
+ 6#8: q3,d,~|q3,~
+ 7#8: q3,d,~|q3,~
+ 8#9: q3,e,~|q3,~
+ 9#9: q3,e,~|q3,~
+10#9: q3,e,~|q3,~
+11#9: q3,e,~|q3,~
+Accepted
+
+String: ddwere
+ 1#1: q0,~,~|q1,$
+Error: No matching rule.
+Rejected

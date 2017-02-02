@@ -1,0 +1,22 @@
+Original Turing Machine by Nick Palutsis
+a
+x,#
+q1,q2,q3,q4,q5,qaccept,qreject
+q1
+qaccept
+qreject
+q1,a|q2,#,R
+q1,x|qreject,x,R
+q1,_|qreject,_,R
+q2,a|q4,x,R
+q2,x|q2,x,R
+q2,_|qaccept,_,R
+q3,a|q3,a,L
+q3,x|q3,x,L
+q3,#|q2,#,R
+q4,a|q5,a,R
+q4,x|q4,x,R
+q4,_|q3,_,L
+q5,a|q4,x,R
+q5,x|q5,x,R
+q5,_|qreject,_,R

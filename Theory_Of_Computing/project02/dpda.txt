@@ -1,0 +1,22 @@
+Original DPDA Machine by Nick Palutsis
+w,e,r,n,d
+a,b,c,$
+q0,ql,q2,q3,q4
+q0
+q3
+q0,~,~|q1,$
+q1,w,$|q2,a
+q1,n,$|q4,b
+q1,r,$|q3,a
+q2,e,~|q3,c
+q2,d,c|q4,~
+q3,w,~|q3,~
+q3,d,~|q3,~
+q3,e,~|q3,~
+q3,r,a|q0,~
+q3,n,~|q3,~
+q4,w,b|q2,c
+q4,d,c|q3,a
+q4,d,b|q1,$
+q4,w,c|q3,~
+q4,n,c|q2,~

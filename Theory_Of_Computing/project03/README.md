@@ -1,0 +1,14 @@
+Project 3: Turing Machine
+=========================
+
+Author: Nick Palutsis
+Class: CSE 30131
+Date: December 1, 2016
+
+The C++ program **tm.cpp** computes the states for a **Turing Machine**. A **Makefile** is included, and after running `make` and then `./tm.exe` the program will start. The program asks for two files as inputs from the user: one which provides the alphabets, states, and transition rules for the turing machine, and the other with test strings (`tm.txt` will work as for the first file, and `test.txt` will work for the second file). It parses through the first file using stringstreams with `,` and `|` as the delimiters between lines. The alphabets and states are each stored in separate unordered sets, and the start, accept, and reject states are stored as strings. The transition rules are stored in an array of Rule objects where each object stores the current state, tape symbol, next state, new tape symbol, and direction for the rule. These objects are then stored in their own vector.  
+
+When the second file is opened, it is read in character by character and checks that each character is in the input alphabet. By default it adds the `_` character to the end of the tape. The program sets the initial state to the start state, and then searches for the rule that matches the current state and the tape symbol the head points to. If the input does not match a character in the alphabet or no matching rule can be found then an error will be displayed and the program will move on to the next test string. If one is found, then it prints the information to stdout, sets the new current state to `nextState` for the rule, writes over the current tape symbol with the new tape symbol, and shifts the head in the direction indicated. When it reaches the end of a line it will compare the current state to accepting state. If it matches, then it will print "Accepted". If it matches the reject state it will print "Rejected." Otherwise, it will print "Error." It then prints out the tape excluding the `_` character. The program will then reset the turing machine to its start state and read in the next test string. It will repeat this process until the end of the file.
+
+To compile the program a simple Makefile is included which uses standard debugging flags and creates an executable **tm.exe**. There is also a file **tm.txt** which is a custom Turing Machine, and another **test.txt** which contains a series of test strings. test.txt is a turing machine which accepts strings of the language `L = { 0^2^n | n >= 0 }`. It includes scenarios which are both accepted and rejected. The file `output.txt` holds the dumped outputs after running each test case.
+
+The code correctly compiles and runs on my personal computer running Cygwin, a Linux terminal for Windows. Running `gcc --version` shows that my gcc is version 5.4.0. I am also using `libstdc++.so.6: version GLIBCXX_3.4.14`.

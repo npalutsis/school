@@ -1,0 +1,1078 @@
+Outputs From Example Machines
+=============================
+
+M1 - Accept:
+	$ ./tm.exe
+	Enter the name of a textfile with the rule set for a turing machine: M1.txt
+
+	   SOURCE: M1: TM from Example 3.9
+	 ALPHABET: 0,1,#
+	     TAPE: x
+	   STATES: q1,q2,q3,q4,q5,q6.q7.q8,qaccept,qreject
+	    START: q1
+	   ACCEPT: qaccept
+	   REJECT: qreject
+
+	RULES:
+	 1: q1,0|q2,x,R
+	 2: q1,#|q8,#,R
+	 3: q1,1|q3,x,R
+	 4: q2,0|q2,0,R
+	 5: q2,1|q2,1,R
+	 6: q2,#|q4,#,R
+	 7: q3,0|q3,0,R
+	 8: q3,1|q3,1,R
+	 9: q3,#|q5,#,R
+	10: q4,x|q4,x,R
+	11: q4,0|q6,x,L
+	12: q5,x|q5,x,R
+	13: q5,1|q6,x,L
+	14: q6,0|q6,0,L
+	15: q6,1|q6,1,L
+	16: q6,x|q6,x,L
+	17: q6,#|q7,#,L
+	18: q7,0|q7,0,L
+	19: q7,1|q7,1,L
+	20: q7,x|q1,x,R
+	21: q8,x|q8,x,R
+	22: q8,_|qaccept,x,R
+
+	Enter the name of an input test file: M1-Accept.txt
+
+	Tape: 0#0
+	1@0#1:q1,0|q2,x,1
+	2@1#6:q2,#|q4,#,2
+	3@2#11:q4,0|q6,x,1
+	4@1#17:q6,#|q7,#,0
+	5@0#20:q7,x|q1,x,1
+	6@1#2:q1,#|q8,#,2
+	7@2#21:q8,x|q8,x,3
+	8@3#22:q8,_|qaccept,x,4
+	Accepted: x#xx
+
+	Tape: 1#1
+	1@0#3:q1,1|q3,x,1
+	2@1#9:q3,#|q5,#,2
+	3@2#13:q5,1|q6,x,1
+	4@1#17:q6,#|q7,#,0
+	5@0#20:q7,x|q1,x,1
+	6@1#2:q1,#|q8,#,2
+	7@2#21:q8,x|q8,x,3
+	8@3#22:q8,_|qaccept,x,4
+	Accepted: x#xx
+
+	Tape: #
+	1@0#2:q1,#|q8,#,1
+	2@1#22:q8,_|qaccept,x,2
+	Accepted: #x
+
+	Tape: 010#010
+	1@0#1:q1,0|q2,x,1
+	2@1#5:q2,1|q2,1,2
+	3@2#4:q2,0|q2,0,3
+	4@3#6:q2,#|q4,#,4
+	5@4#11:q4,0|q6,x,3
+	6@3#17:q6,#|q7,#,2
+	7@2#18:q7,0|q7,0,1
+	8@1#19:q7,1|q7,1,0
+	9@0#20:q7,x|q1,x,1
+	10@1#3:q1,1|q3,x,2
+	11@2#7:q3,0|q3,0,3
+	12@3#9:q3,#|q5,#,4
+	13@4#12:q5,x|q5,x,5
+	14@5#13:q5,1|q6,x,4
+	15@4#16:q6,x|q6,x,3
+	16@3#17:q6,#|q7,#,2
+	17@2#18:q7,0|q7,0,1
+	18@1#20:q7,x|q1,x,2
+	19@2#1:q1,0|q2,x,3
+	20@3#6:q2,#|q4,#,4
+	21@4#10:q4,x|q4,x,5
+	22@5#10:q4,x|q4,x,6
+	23@6#11:q4,0|q6,x,5
+	24@5#16:q6,x|q6,x,4
+	25@4#16:q6,x|q6,x,3
+	26@3#17:q6,#|q7,#,2
+	27@2#20:q7,x|q1,x,3
+	28@3#2:q1,#|q8,#,4
+	29@4#21:q8,x|q8,x,5
+	30@5#21:q8,x|q8,x,6
+	31@6#21:q8,x|q8,x,7
+	32@7#22:q8,_|qaccept,x,8
+	Accepted: xxx#xxxx
+
+	Tape: 100110#100110
+	1@0#3:q1,1|q3,x,1
+	2@1#7:q3,0|q3,0,2
+	3@2#7:q3,0|q3,0,3
+	4@3#8:q3,1|q3,1,4
+	5@4#8:q3,1|q3,1,5
+	6@5#7:q3,0|q3,0,6
+	7@6#9:q3,#|q5,#,7
+	8@7#13:q5,1|q6,x,6
+	9@6#17:q6,#|q7,#,5
+	10@5#18:q7,0|q7,0,4
+	11@4#19:q7,1|q7,1,3
+	12@3#19:q7,1|q7,1,2
+	13@2#18:q7,0|q7,0,1
+	14@1#18:q7,0|q7,0,0
+	15@0#20:q7,x|q1,x,1
+	16@1#1:q1,0|q2,x,2
+	17@2#4:q2,0|q2,0,3
+	18@3#5:q2,1|q2,1,4
+	19@4#5:q2,1|q2,1,5
+	20@5#4:q2,0|q2,0,6
+	21@6#6:q2,#|q4,#,7
+	22@7#10:q4,x|q4,x,8
+	23@8#11:q4,0|q6,x,7
+	24@7#16:q6,x|q6,x,6
+	25@6#17:q6,#|q7,#,5
+	26@5#18:q7,0|q7,0,4
+	27@4#19:q7,1|q7,1,3
+	28@3#19:q7,1|q7,1,2
+	29@2#18:q7,0|q7,0,1
+	30@1#20:q7,x|q1,x,2
+	31@2#1:q1,0|q2,x,3
+	32@3#5:q2,1|q2,1,4
+	33@4#5:q2,1|q2,1,5
+	34@5#4:q2,0|q2,0,6
+	35@6#6:q2,#|q4,#,7
+	36@7#10:q4,x|q4,x,8
+	37@8#10:q4,x|q4,x,9
+	38@9#11:q4,0|q6,x,8
+	39@8#16:q6,x|q6,x,7
+	40@7#16:q6,x|q6,x,6
+	41@6#17:q6,#|q7,#,5
+	42@5#18:q7,0|q7,0,4
+	43@4#19:q7,1|q7,1,3
+	44@3#19:q7,1|q7,1,2
+	45@2#20:q7,x|q1,x,3
+	46@3#3:q1,1|q3,x,4
+	47@4#8:q3,1|q3,1,5
+	48@5#7:q3,0|q3,0,6
+	49@6#9:q3,#|q5,#,7
+	50@7#12:q5,x|q5,x,8
+	51@8#12:q5,x|q5,x,9
+	52@9#12:q5,x|q5,x,10
+	53@10#13:q5,1|q6,x,9
+	54@9#16:q6,x|q6,x,8
+	55@8#16:q6,x|q6,x,7
+	56@7#16:q6,x|q6,x,6
+	57@6#17:q6,#|q7,#,5
+	58@5#18:q7,0|q7,0,4
+	59@4#19:q7,1|q7,1,3
+	60@3#20:q7,x|q1,x,4
+	61@4#3:q1,1|q3,x,5
+	62@5#7:q3,0|q3,0,6
+	63@6#9:q3,#|q5,#,7
+	64@7#12:q5,x|q5,x,8
+	65@8#12:q5,x|q5,x,9
+	66@9#12:q5,x|q5,x,10
+	67@10#12:q5,x|q5,x,11
+	68@11#13:q5,1|q6,x,10
+	69@10#16:q6,x|q6,x,9
+	70@9#16:q6,x|q6,x,8
+	71@8#16:q6,x|q6,x,7
+	72@7#16:q6,x|q6,x,6
+	73@6#17:q6,#|q7,#,5
+	74@5#18:q7,0|q7,0,4
+	75@4#20:q7,x|q1,x,5
+	76@5#1:q1,0|q2,x,6
+	77@6#6:q2,#|q4,#,7
+	78@7#10:q4,x|q4,x,8
+	79@8#10:q4,x|q4,x,9
+	80@9#10:q4,x|q4,x,10
+	81@10#10:q4,x|q4,x,11
+	82@11#10:q4,x|q4,x,12
+	83@12#11:q4,0|q6,x,11
+	84@11#16:q6,x|q6,x,10
+	85@10#16:q6,x|q6,x,9
+	86@9#16:q6,x|q6,x,8
+	87@8#16:q6,x|q6,x,7
+	88@7#16:q6,x|q6,x,6
+	89@6#17:q6,#|q7,#,5
+	90@5#20:q7,x|q1,x,6
+	91@6#2:q1,#|q8,#,7
+	92@7#21:q8,x|q8,x,8
+	93@8#21:q8,x|q8,x,9
+	94@9#21:q8,x|q8,x,10
+	95@10#21:q8,x|q8,x,11
+	96@11#21:q8,x|q8,x,12
+	97@12#21:q8,x|q8,x,13
+	98@13#22:q8,_|qaccept,x,14
+	Accepted: xxxxxx#xxxxxxx
+
+	Tape: 10101#10101
+	1@0#3:q1,1|q3,x,1
+	2@1#7:q3,0|q3,0,2
+	3@2#8:q3,1|q3,1,3
+	4@3#7:q3,0|q3,0,4
+	5@4#8:q3,1|q3,1,5
+	6@5#9:q3,#|q5,#,6
+	7@6#13:q5,1|q6,x,5
+	8@5#17:q6,#|q7,#,4
+	9@4#19:q7,1|q7,1,3
+	10@3#18:q7,0|q7,0,2
+	11@2#19:q7,1|q7,1,1
+	12@1#18:q7,0|q7,0,0
+	13@0#20:q7,x|q1,x,1
+	14@1#1:q1,0|q2,x,2
+	15@2#5:q2,1|q2,1,3
+	16@3#4:q2,0|q2,0,4
+	17@4#5:q2,1|q2,1,5
+	18@5#6:q2,#|q4,#,6
+	19@6#10:q4,x|q4,x,7
+	20@7#11:q4,0|q6,x,6
+	21@6#16:q6,x|q6,x,5
+	22@5#17:q6,#|q7,#,4
+	23@4#19:q7,1|q7,1,3
+	24@3#18:q7,0|q7,0,2
+	25@2#19:q7,1|q7,1,1
+	26@1#20:q7,x|q1,x,2
+	27@2#3:q1,1|q3,x,3
+	28@3#7:q3,0|q3,0,4
+	29@4#8:q3,1|q3,1,5
+	30@5#9:q3,#|q5,#,6
+	31@6#12:q5,x|q5,x,7
+	32@7#12:q5,x|q5,x,8
+	33@8#13:q5,1|q6,x,7
+	34@7#16:q6,x|q6,x,6
+	35@6#16:q6,x|q6,x,5
+	36@5#17:q6,#|q7,#,4
+	37@4#19:q7,1|q7,1,3
+	38@3#18:q7,0|q7,0,2
+	39@2#20:q7,x|q1,x,3
+	40@3#1:q1,0|q2,x,4
+	41@4#5:q2,1|q2,1,5
+	42@5#6:q2,#|q4,#,6
+	43@6#10:q4,x|q4,x,7
+	44@7#10:q4,x|q4,x,8
+	45@8#10:q4,x|q4,x,9
+	46@9#11:q4,0|q6,x,8
+	47@8#16:q6,x|q6,x,7
+	48@7#16:q6,x|q6,x,6
+	49@6#16:q6,x|q6,x,5
+	50@5#17:q6,#|q7,#,4
+	51@4#19:q7,1|q7,1,3
+	52@3#20:q7,x|q1,x,4
+	53@4#3:q1,1|q3,x,5
+	54@5#9:q3,#|q5,#,6
+	55@6#12:q5,x|q5,x,7
+	56@7#12:q5,x|q5,x,8
+	57@8#12:q5,x|q5,x,9
+	58@9#12:q5,x|q5,x,10
+	59@10#13:q5,1|q6,x,9
+	60@9#16:q6,x|q6,x,8
+	61@8#16:q6,x|q6,x,7
+	62@7#16:q6,x|q6,x,6
+	63@6#16:q6,x|q6,x,5
+	64@5#17:q6,#|q7,#,4
+	65@4#20:q7,x|q1,x,5
+	66@5#2:q1,#|q8,#,6
+	67@6#21:q8,x|q8,x,7
+	68@7#21:q8,x|q8,x,8
+	69@8#21:q8,x|q8,x,9
+	70@9#21:q8,x|q8,x,10
+	71@10#21:q8,x|q8,x,11
+	72@11#22:q8,_|qaccept,x,12
+	Accepted: xxxxx#xxxxxx
+
+M1 - Reject:
+	$ ./tm.exe
+	Enter the name of a textfile with the rule set for a turing machine: M1.txt
+
+	   SOURCE: M1: TM from Example 3.9
+	 ALPHABET: 0,1,#
+	     TAPE: x
+	   STATES: q1,q2,q3,q4,q5,q6.q7.q8,qaccept,qreject
+	    START: q1
+	   ACCEPT: qaccept
+	   REJECT: qreject
+
+	RULES:
+	 1: q1,0|q2,x,R
+	 2: q1,#|q8,#,R
+	 3: q1,1|q3,x,R
+	 4: q2,0|q2,0,R
+	 5: q2,1|q2,1,R
+	 6: q2,#|q4,#,R
+	 7: q3,0|q3,0,R
+	 8: q3,1|q3,1,R
+	 9: q3,#|q5,#,R
+	10: q4,x|q4,x,R
+	11: q4,0|q6,x,L
+	12: q5,x|q5,x,R
+	13: q5,1|q6,x,L
+	14: q6,0|q6,0,L
+	15: q6,1|q6,1,L
+	16: q6,x|q6,x,L
+	17: q6,#|q7,#,L
+	18: q7,0|q7,0,L
+	19: q7,1|q7,1,L
+	20: q7,x|q1,x,R
+	21: q8,x|q8,x,R
+	22: q8,_|qaccept,x,R
+
+	Enter the name of an input test file: M1-Reject.txt
+
+	Tape: 0#1
+	1@0#1:q1,0|q2,x,1
+	2@1#6:q2,#|q4,#,2
+	Error: No rule matching current state and input.
+	Error: x#1
+
+	Tape: 1#0
+	1@0#3:q1,1|q3,x,1
+	2@1#9:q3,#|q5,#,2
+	Error: No rule matching current state and input.
+	Error: x#0
+
+	Tape: #0
+	1@0#2:q1,#|q8,#,1
+	Error: No rule matching current state and input.
+	Error: #0
+
+	Tape: 1#
+	1@0#3:q1,1|q3,x,1
+	2@1#9:q3,#|q5,#,2
+	Error: No rule matching current state and input.
+	Error: x#
+
+	Tape: 0100#010
+	1@0#1:q1,0|q2,x,1
+	2@1#5:q2,1|q2,1,2
+	3@2#4:q2,0|q2,0,3
+	4@3#4:q2,0|q2,0,4
+	5@4#6:q2,#|q4,#,5
+	6@5#11:q4,0|q6,x,4
+	7@4#17:q6,#|q7,#,3
+	8@3#18:q7,0|q7,0,2
+	9@2#18:q7,0|q7,0,1
+	10@1#19:q7,1|q7,1,0
+	11@0#20:q7,x|q1,x,1
+	12@1#3:q1,1|q3,x,2
+	13@2#7:q3,0|q3,0,3
+	14@3#7:q3,0|q3,0,4
+	15@4#9:q3,#|q5,#,5
+	16@5#12:q5,x|q5,x,6
+	17@6#13:q5,1|q6,x,5
+	18@5#16:q6,x|q6,x,4
+	19@4#17:q6,#|q7,#,3
+	20@3#18:q7,0|q7,0,2
+	21@2#18:q7,0|q7,0,1
+	22@1#20:q7,x|q1,x,2
+	23@2#1:q1,0|q2,x,3
+	24@3#4:q2,0|q2,0,4
+	25@4#6:q2,#|q4,#,5
+	26@5#10:q4,x|q4,x,6
+	27@6#10:q4,x|q4,x,7
+	28@7#11:q4,0|q6,x,6
+	29@6#16:q6,x|q6,x,5
+	30@5#16:q6,x|q6,x,4
+	31@4#17:q6,#|q7,#,3
+	32@3#18:q7,0|q7,0,2
+	33@2#20:q7,x|q1,x,3
+	34@3#1:q1,0|q2,x,4
+	35@4#6:q2,#|q4,#,5
+	36@5#10:q4,x|q4,x,6
+	37@6#10:q4,x|q4,x,7
+	38@7#10:q4,x|q4,x,8
+	Error: No rule matching current state and input.
+	Error: xxxx#xxx
+
+	Tape: 10011#100110
+	1@0#3:q1,1|q3,x,1
+	2@1#7:q3,0|q3,0,2
+	3@2#7:q3,0|q3,0,3
+	4@3#8:q3,1|q3,1,4
+	5@4#8:q3,1|q3,1,5
+	6@5#9:q3,#|q5,#,6
+	7@6#13:q5,1|q6,x,5
+	8@5#17:q6,#|q7,#,4
+	9@4#19:q7,1|q7,1,3
+	10@3#19:q7,1|q7,1,2
+	11@2#18:q7,0|q7,0,1
+	12@1#18:q7,0|q7,0,0
+	13@0#20:q7,x|q1,x,1
+	14@1#1:q1,0|q2,x,2
+	15@2#4:q2,0|q2,0,3
+	16@3#5:q2,1|q2,1,4
+	17@4#5:q2,1|q2,1,5
+	18@5#6:q2,#|q4,#,6
+	19@6#10:q4,x|q4,x,7
+	20@7#11:q4,0|q6,x,6
+	21@6#16:q6,x|q6,x,5
+	22@5#17:q6,#|q7,#,4
+	23@4#19:q7,1|q7,1,3
+	24@3#19:q7,1|q7,1,2
+	25@2#18:q7,0|q7,0,1
+	26@1#20:q7,x|q1,x,2
+	27@2#1:q1,0|q2,x,3
+	28@3#5:q2,1|q2,1,4
+	29@4#5:q2,1|q2,1,5
+	30@5#6:q2,#|q4,#,6
+	31@6#10:q4,x|q4,x,7
+	32@7#10:q4,x|q4,x,8
+	33@8#11:q4,0|q6,x,7
+	34@7#16:q6,x|q6,x,6
+	35@6#16:q6,x|q6,x,5
+	36@5#17:q6,#|q7,#,4
+	37@4#19:q7,1|q7,1,3
+	38@3#19:q7,1|q7,1,2
+	39@2#20:q7,x|q1,x,3
+	40@3#3:q1,1|q3,x,4
+	41@4#8:q3,1|q3,1,5
+	42@5#9:q3,#|q5,#,6
+	43@6#12:q5,x|q5,x,7
+	44@7#12:q5,x|q5,x,8
+	45@8#12:q5,x|q5,x,9
+	46@9#13:q5,1|q6,x,8
+	47@8#16:q6,x|q6,x,7
+	48@7#16:q6,x|q6,x,6
+	49@6#16:q6,x|q6,x,5
+	50@5#17:q6,#|q7,#,4
+	51@4#19:q7,1|q7,1,3
+	52@3#20:q7,x|q1,x,4
+	53@4#3:q1,1|q3,x,5
+	54@5#9:q3,#|q5,#,6
+	55@6#12:q5,x|q5,x,7
+	56@7#12:q5,x|q5,x,8
+	57@8#12:q5,x|q5,x,9
+	58@9#12:q5,x|q5,x,10
+	59@10#13:q5,1|q6,x,9
+	60@9#16:q6,x|q6,x,8
+	61@8#16:q6,x|q6,x,7
+	62@7#16:q6,x|q6,x,6
+	63@6#16:q6,x|q6,x,5
+	64@5#17:q6,#|q7,#,4
+	65@4#20:q7,x|q1,x,5
+	66@5#2:q1,#|q8,#,6
+	67@6#21:q8,x|q8,x,7
+	68@7#21:q8,x|q8,x,8
+	69@8#21:q8,x|q8,x,9
+	70@9#21:q8,x|q8,x,10
+	71@10#21:q8,x|q8,x,11
+	Error: No rule matching current state and input.
+	Error: xxxxx#xxxxx0
+
+	Tape: 1001#101
+	1@0#3:q1,1|q3,x,1
+	2@1#7:q3,0|q3,0,2
+	3@2#7:q3,0|q3,0,3
+	4@3#8:q3,1|q3,1,4
+	5@4#9:q3,#|q5,#,5
+	6@5#13:q5,1|q6,x,4
+	7@4#17:q6,#|q7,#,3
+	8@3#19:q7,1|q7,1,2
+	9@2#18:q7,0|q7,0,1
+	10@1#18:q7,0|q7,0,0
+	11@0#20:q7,x|q1,x,1
+	12@1#1:q1,0|q2,x,2
+	13@2#4:q2,0|q2,0,3
+	14@3#5:q2,1|q2,1,4
+	15@4#6:q2,#|q4,#,5
+	16@5#10:q4,x|q4,x,6
+	17@6#11:q4,0|q6,x,5
+	18@5#16:q6,x|q6,x,4
+	19@4#17:q6,#|q7,#,3
+	20@3#19:q7,1|q7,1,2
+	21@2#18:q7,0|q7,0,1
+	22@1#20:q7,x|q1,x,2
+	23@2#1:q1,0|q2,x,3
+	24@3#5:q2,1|q2,1,4
+	25@4#6:q2,#|q4,#,5
+	26@5#10:q4,x|q4,x,6
+	27@6#10:q4,x|q4,x,7
+	Error: No rule matching current state and input.
+	Error: xxx1#xx1
+
+M2 - Accept:
+	$ ./tm.exe
+	Enter the name of a textfile with the rule set for a turing machine: M2.txt
+
+	   SOURCE: M2: Add 1 to binary number in left to right order
+	 ALPHABET: 0,1
+	     TAPE: 0,1
+	   STATES: A,F,R
+	    START: A
+	   ACCEPT: F
+	   REJECT: R
+
+	RULES:
+	 1: A,0|F,1,R
+	 2: A,1|A,0,R
+	 3: A,_|F,1,R
+
+	Enter the name of an input test file: M2-Accept.txt
+
+	Tape: 0
+	1@0#1:A,0|F,1,1
+	Accepted: 1
+
+	Tape: 1
+	1@0#2:A,1|A,0,1
+	2@1#3:A,_|F,1,2
+	Accepted: 01
+
+	Tape: 10
+	1@0#2:A,1|A,0,1
+	2@1#1:A,0|F,1,2
+	Accepted: 01
+
+	Tape: 11101
+	1@0#2:A,1|A,0,1
+	2@1#2:A,1|A,0,2
+	3@2#2:A,1|A,0,3
+	4@3#1:A,0|F,1,4
+	Accepted: 00011
+
+	Tape: 10011
+	1@0#2:A,1|A,0,1
+	2@1#1:A,0|F,1,2
+	Accepted: 01011
+
+	Tape: 111111
+	1@0#2:A,1|A,0,1
+	2@1#2:A,1|A,0,2
+	3@2#2:A,1|A,0,3
+	4@3#2:A,1|A,0,4
+	5@4#2:A,1|A,0,5
+	6@5#2:A,1|A,0,6
+	7@6#3:A,_|F,1,7
+	Accepted: 0000001
+
+	Tape: _
+	1@0#3:A,_|F,1,1
+	Accepted: 1
+
+M3 - Accept:
+	$ ./tm.exe
+	Enter the name of a textfile with the rule set for a turing machine: M3.txt
+
+	   SOURCE: M3:Move String 1 right
+	 ALPHABET: 0,1
+	     TAPE: #
+	   STATES: S,Z,O,R,B
+	    START: S
+	   ACCEPT: F
+	   REJECT: R
+
+	RULES:
+	 1: S,0|Z,#,R
+	 2: S,1|O,#,R
+	 3: Z,0|Z,0,R
+	 4: Z,1|O,0,R
+	 5: Z,_|B,0,L
+	 6: O,0|Z,1,R
+	 7: O,1|O,1,R
+	 8: O,_|B,1,L
+	 9: R,0|R,0,L
+	10: R,1|O,1,L
+	11: R,#|F,#,L
+	12: B,0|B,0,L
+	13: B,1|B,1,L
+	14: B,#|F,#,L
+
+	Enter the name of an input test file: M3-Accept.txt
+
+	Tape: 0
+	1@0#1:S,0|Z,#,1
+	2@1#5:Z,_|B,0,0
+	3@0#14:B,#|F,#,0
+	Accepted: #0
+
+	Tape: 1
+	1@0#2:S,1|O,#,1
+	2@1#8:O,_|B,1,0
+	3@0#14:B,#|F,#,0
+	Accepted: #1
+
+	Tape: 10
+	1@0#2:S,1|O,#,1
+	2@1#6:O,0|Z,1,2
+	3@2#5:Z,_|B,0,1
+	4@1#13:B,1|B,1,0
+	5@0#14:B,#|F,#,0
+	Accepted: #10
+
+	Tape: 11101
+	1@0#2:S,1|O,#,1
+	2@1#7:O,1|O,1,2
+	3@2#7:O,1|O,1,3
+	4@3#6:O,0|Z,1,4
+	5@4#4:Z,1|O,0,5
+	6@5#8:O,_|B,1,4
+	7@4#12:B,0|B,0,3
+	8@3#13:B,1|B,1,2
+	9@2#13:B,1|B,1,1
+	10@1#13:B,1|B,1,0
+	11@0#14:B,#|F,#,0
+	Accepted: #11101
+
+	Tape: 10011
+	1@0#2:S,1|O,#,1
+	2@1#6:O,0|Z,1,2
+	3@2#3:Z,0|Z,0,3
+	4@3#4:Z,1|O,0,4
+	5@4#7:O,1|O,1,5
+	6@5#8:O,_|B,1,4
+	7@4#13:B,1|B,1,3
+	8@3#12:B,0|B,0,2
+	9@2#12:B,0|B,0,1
+	10@1#13:B,1|B,1,0
+	11@0#14:B,#|F,#,0
+	Accepted: #10011
+
+	Tape: 111111
+	1@0#2:S,1|O,#,1
+	2@1#7:O,1|O,1,2
+	3@2#7:O,1|O,1,3
+	4@3#7:O,1|O,1,4
+	5@4#7:O,1|O,1,5
+	6@5#7:O,1|O,1,6
+	7@6#8:O,_|B,1,5
+	8@5#13:B,1|B,1,4
+	9@4#13:B,1|B,1,3
+	10@3#13:B,1|B,1,2
+	11@2#13:B,1|B,1,1
+	12@1#13:B,1|B,1,0
+	13@0#14:B,#|F,#,0
+	Accepted: #111111
+
+	Tape: _
+	Error: No rule matching current state and input.
+	Error:
+
+Mystery Test:
+	$ ./tm.exe
+	Enter the name of a textfile with the rule set for a turing machine: Mystery.txt
+
+	   SOURCE: Mystery Machine
+	 ALPHABET: a,b,c
+	     TAPE: #,x
+	   STATES: q1,qa,qb,qc,qab,qac,qba,qbc,qca,qcb,qabc,qaccept,qreject
+	    START: q1
+	   ACCEPT: qaccept
+	   REJECT: qreject
+
+	RULES:
+	 1: q1,a|qa,#,R
+	 2: q1,b|qb,#,R
+	 3: q1,c|qc,#,R
+	 4: q1,x|q1,#,R
+	 5: q1,_|qaccept,#,L
+	 6: qa,x|qa,x,R
+	 7: qa,a|qa,a,R
+	 8: qa,b|qab,x,R
+	 9: qa,c|qac,x,R
+	10: qa,_|qreject,#,L
+	11: qb,x|qb,x,R
+	12: qb,b|qb,b,R
+	13: qb,a|qba,x,R
+	14: qb,c|qbc,x,R
+	15: qb,_|qreject,#,L
+	16: qc,x|qc,x,R
+	17: qc,c|qc,c,R
+	18: qc,a|qca,x,R
+	19: qc,b|qcb,x,R
+	20: qc,_|qreject,#,L
+	21: qab,x|qab,x,R
+	22: qab,a|qab,a,R
+	23: qab,b|qab,b,R
+	24: qab,c|qabc,x,L
+	25: qab,_|qreject,#,L
+	26: qac,x|qac,x,R
+	27: qac,a|qac,a,R
+	28: qac,c|qac,c,R
+	29: qac,b|qabc,x,L
+	30: qac,_|qreject,b,L
+	31: qba,x|qba,x,R
+	32: qba,a|qba,a,R
+	33: qba,b|qba,b,R
+	34: qba,c|qabc,x,L
+	35: qba,_|qreject,#,L
+	36: qbc,x|qbc,x,R
+	37: qbc,b|qbc,b,R
+	38: qbc,c|qbc,c,R
+	39: qbc,a|qabc,x,L
+	40: qbc,_|qreject,#,L
+	41: qca,x|qca,x,R
+	42: qca,a|qca,a,R
+	43: qca,c|qca,c,R
+	44: qca,b|qabc,x,L
+	45: qca,_|qreject,#,L
+	46: qcb,x|qcb,x,R
+	47: qcb,c|qcb,c,R
+	48: qcb,b|qcb,b,R
+	49: qcb,a|qabc,x,L
+	50: qcb,_|qreject,#,L
+	51: qabc,a|qabc,a,L
+	52: qabc,b|qabc,b,L
+	53: qabc,c|qabc,c,L
+	54: qabc,x|qabc,x,L
+	55: qabc,#|q1,#,R
+
+	Enter the name of an input test file: MysteryTest.txt
+
+	Tape: abc
+	1@0#1:q1,a|qa,#,1
+	2@1#8:qa,b|qab,x,2
+	3@2#24:qab,c|qabc,x,1
+	4@1#54:qabc,x|qabc,x,0
+	5@0#55:qabc,#|q1,#,1
+	6@1#4:q1,x|q1,#,2
+	7@2#4:q1,x|q1,#,3
+	8@3#5:q1,_|qaccept,#,2
+	Accepted: ####
+
+	Tape: cba
+	1@0#3:q1,c|qc,#,1
+	2@1#19:qc,b|qcb,x,2
+	3@2#49:qcb,a|qabc,x,1
+	4@1#54:qabc,x|qabc,x,0
+	5@0#55:qabc,#|q1,#,1
+	6@1#4:q1,x|q1,#,2
+	7@2#4:q1,x|q1,#,3
+	8@3#5:q1,_|qaccept,#,2
+	Accepted: ####
+
+	Tape: cbb
+	1@0#3:q1,c|qc,#,1
+	2@1#19:qc,b|qcb,x,2
+	3@2#48:qcb,b|qcb,b,3
+	4@3#50:qcb,_|qreject,#,2
+	Rejected: #xb#
+
+	Tape: abca
+	1@0#1:q1,a|qa,#,1
+	2@1#8:qa,b|qab,x,2
+	3@2#24:qab,c|qabc,x,1
+	4@1#54:qabc,x|qabc,x,0
+	5@0#55:qabc,#|q1,#,1
+	6@1#4:q1,x|q1,#,2
+	7@2#4:q1,x|q1,#,3
+	8@3#1:q1,a|qa,#,4
+	9@4#10:qa,_|qreject,#,3
+	Rejected: #####
+
+	Tape: bbaacc
+	1@0#2:q1,b|qb,#,1
+	2@1#12:qb,b|qb,b,2
+	3@2#13:qb,a|qba,x,3
+	4@3#32:qba,a|qba,a,4
+	5@4#34:qba,c|qabc,x,3
+	6@3#51:qabc,a|qabc,a,2
+	7@2#54:qabc,x|qabc,x,1
+	8@1#52:qabc,b|qabc,b,0
+	9@0#55:qabc,#|q1,#,1
+	10@1#2:q1,b|qb,#,2
+	11@2#11:qb,x|qb,x,3
+	12@3#13:qb,a|qba,x,4
+	13@4#31:qba,x|qba,x,5
+	14@5#34:qba,c|qabc,x,4
+	15@4#54:qabc,x|qabc,x,3
+	16@3#54:qabc,x|qabc,x,2
+	17@2#54:qabc,x|qabc,x,1
+	18@1#55:qabc,#|q1,#,2
+	19@2#4:q1,x|q1,#,3
+	20@3#4:q1,x|q1,#,4
+	21@4#4:q1,x|q1,#,5
+	22@5#4:q1,x|q1,#,6
+	23@6#5:q1,_|qaccept,#,5
+	Accepted: #######
+
+	Tape: bacb
+	1@0#2:q1,b|qb,#,1
+	2@1#13:qb,a|qba,x,2
+	3@2#34:qba,c|qabc,x,1
+	4@1#54:qabc,x|qabc,x,0
+	5@0#55:qabc,#|q1,#,1
+	6@1#4:q1,x|q1,#,2
+	7@2#4:q1,x|q1,#,3
+	8@3#2:q1,b|qb,#,4
+	9@4#15:qb,_|qreject,#,3
+	Rejected: #####
+
+	Tape: aaacbba
+	1@0#1:q1,a|qa,#,1
+	2@1#7:qa,a|qa,a,2
+	3@2#7:qa,a|qa,a,3
+	4@3#9:qa,c|qac,x,4
+	5@4#29:qac,b|qabc,x,3
+	6@3#54:qabc,x|qabc,x,2
+	7@2#51:qabc,a|qabc,a,1
+	8@1#51:qabc,a|qabc,a,0
+	9@0#55:qabc,#|q1,#,1
+	10@1#1:q1,a|qa,#,2
+	11@2#7:qa,a|qa,a,3
+	12@3#6:qa,x|qa,x,4
+	13@4#6:qa,x|qa,x,5
+	14@5#8:qa,b|qab,x,6
+	15@6#22:qab,a|qab,a,7
+	16@7#25:qab,_|qreject,#,6
+	Rejected: ##axxxa#
+
+	Tape: cbbbaccaa
+	1@0#3:q1,c|qc,#,1
+	2@1#19:qc,b|qcb,x,2
+	3@2#48:qcb,b|qcb,b,3
+	4@3#48:qcb,b|qcb,b,4
+	5@4#49:qcb,a|qabc,x,3
+	6@3#52:qabc,b|qabc,b,2
+	7@2#52:qabc,b|qabc,b,1
+	8@1#54:qabc,x|qabc,x,0
+	9@0#55:qabc,#|q1,#,1
+	10@1#4:q1,x|q1,#,2
+	11@2#2:q1,b|qb,#,3
+	12@3#12:qb,b|qb,b,4
+	13@4#11:qb,x|qb,x,5
+	14@5#14:qb,c|qbc,x,6
+	15@6#38:qbc,c|qbc,c,7
+	16@7#39:qbc,a|qabc,x,6
+	17@6#53:qabc,c|qabc,c,5
+	18@5#54:qabc,x|qabc,x,4
+	19@4#54:qabc,x|qabc,x,3
+	20@3#52:qabc,b|qabc,b,2
+	21@2#55:qabc,#|q1,#,3
+	22@3#2:q1,b|qb,#,4
+	23@4#11:qb,x|qb,x,5
+	24@5#11:qb,x|qb,x,6
+	25@6#14:qb,c|qbc,x,7
+	26@7#36:qbc,x|qbc,x,8
+	27@8#39:qbc,a|qabc,x,7
+	28@7#54:qabc,x|qabc,x,6
+	29@6#54:qabc,x|qabc,x,5
+	30@5#54:qabc,x|qabc,x,4
+	31@4#54:qabc,x|qabc,x,3
+	32@3#55:qabc,#|q1,#,4
+	33@4#4:q1,x|q1,#,5
+	34@5#4:q1,x|q1,#,6
+	35@6#4:q1,x|q1,#,7
+	36@7#4:q1,x|q1,#,8
+	37@8#4:q1,x|q1,#,9
+	38@9#5:q1,_|qaccept,#,8
+	Accepted: ##########
+
+	Tape: cbabcacababc
+	1@0#3:q1,c|qc,#,1
+	2@1#19:qc,b|qcb,x,2
+	3@2#49:qcb,a|qabc,x,1
+	4@1#54:qabc,x|qabc,x,0
+	5@0#55:qabc,#|q1,#,1
+	6@1#4:q1,x|q1,#,2
+	7@2#4:q1,x|q1,#,3
+	8@3#2:q1,b|qb,#,4
+	9@4#14:qb,c|qbc,x,5
+	10@5#39:qbc,a|qabc,x,4
+	11@4#54:qabc,x|qabc,x,3
+	12@3#55:qabc,#|q1,#,4
+	13@4#4:q1,x|q1,#,5
+	14@5#4:q1,x|q1,#,6
+	15@6#3:q1,c|qc,#,7
+	16@7#18:qc,a|qca,x,8
+	17@8#44:qca,b|qabc,x,7
+	18@7#54:qabc,x|qabc,x,6
+	19@6#55:qabc,#|q1,#,7
+	20@7#4:q1,x|q1,#,8
+	21@8#4:q1,x|q1,#,9
+	22@9#1:q1,a|qa,#,10
+	23@10#8:qa,b|qab,x,11
+	24@11#24:qab,c|qabc,x,10
+	25@10#54:qabc,x|qabc,x,9
+	26@9#55:qabc,#|q1,#,10
+	27@10#4:q1,x|q1,#,11
+	28@11#4:q1,x|q1,#,12
+	29@12#5:q1,_|qaccept,#,11
+	Accepted: #############
+
+Custom Machine:
+	$ ./tm.exe
+	Enter the name of a textfile with the rule set for a turing machine: tm.txt
+
+	   SOURCE: Original Turing Machine by Nick Palutsis
+	 ALPHABET: a
+	     TAPE: x,#
+	   STATES: q1,q2,q3,q4,q5,qaccept,qreject
+	    START: q1
+	   ACCEPT: qaccept
+	   REJECT: qreject
+
+	RULES:
+	 1: q1,a|q2,#,R
+	 2: q1,x|qreject,x,R
+	 3: q1,_|qreject,_,R
+	 4: q2,a|q4,x,R
+	 5: q2,x|q2,x,R
+	 6: q2,_|qaccept,_,R
+	 7: q3,a|q3,a,L
+	 8: q3,x|q3,x,L
+	 9: q3,#|q2,#,R
+	10: q4,a|q5,a,R
+	11: q4,x|q4,x,R
+	12: q4,_|q3,_,L
+	13: q5,a|q4,x,R
+	14: q5,x|q5,x,R
+	15: q5,_|qreject,_,R
+
+	Enter the name of an input test file: test.txt
+
+	Tape: a
+	1@0#1:q1,a|q2,#,1
+	2@1#6:q2,_|qaccept,_,2
+	Accepted: #
+
+	Tape: aa
+	1@0#1:q1,a|q2,#,1
+	2@1#4:q2,a|q4,x,2
+	3@2#12:q4,_|q3,_,1
+	4@1#8:q3,x|q3,x,0
+	5@0#9:q3,#|q2,#,1
+	6@1#5:q2,x|q2,x,2
+	7@2#6:q2,_|qaccept,_,3
+	Accepted: #x
+
+	Tape: aaa
+	1@0#1:q1,a|q2,#,1
+	2@1#4:q2,a|q4,x,2
+	3@2#10:q4,a|q5,a,3
+	4@3#15:q5,_|qreject,_,4
+	Rejected: #xa
+
+	Tape: aaaa
+	1@0#1:q1,a|q2,#,1
+	2@1#4:q2,a|q4,x,2
+	3@2#10:q4,a|q5,a,3
+	4@3#13:q5,a|q4,x,4
+	5@4#12:q4,_|q3,_,3
+	6@3#8:q3,x|q3,x,2
+	7@2#7:q3,a|q3,a,1
+	8@1#8:q3,x|q3,x,0
+	9@0#9:q3,#|q2,#,1
+	10@1#5:q2,x|q2,x,2
+	11@2#4:q2,a|q4,x,3
+	12@3#11:q4,x|q4,x,4
+	13@4#12:q4,_|q3,_,3
+	14@3#8:q3,x|q3,x,2
+	15@2#8:q3,x|q3,x,1
+	16@1#8:q3,x|q3,x,0
+	17@0#9:q3,#|q2,#,1
+	18@1#5:q2,x|q2,x,2
+	19@2#5:q2,x|q2,x,3
+	20@3#5:q2,x|q2,x,4
+	21@4#6:q2,_|qaccept,_,5
+	Accepted: #xxx
+
+	Tape: aaaaa
+	1@0#1:q1,a|q2,#,1
+	2@1#4:q2,a|q4,x,2
+	3@2#10:q4,a|q5,a,3
+	4@3#13:q5,a|q4,x,4
+	5@4#10:q4,a|q5,a,5
+	6@5#15:q5,_|qreject,_,6
+	Rejected: #xaxa
+
+	Tape: aaaaaa
+	1@0#1:q1,a|q2,#,1
+	2@1#4:q2,a|q4,x,2
+	3@2#10:q4,a|q5,a,3
+	4@3#13:q5,a|q4,x,4
+	5@4#10:q4,a|q5,a,5
+	6@5#13:q5,a|q4,x,6
+	7@6#12:q4,_|q3,_,5
+	8@5#8:q3,x|q3,x,4
+	9@4#7:q3,a|q3,a,3
+	10@3#8:q3,x|q3,x,2
+	11@2#7:q3,a|q3,a,1
+	12@1#8:q3,x|q3,x,0
+	13@0#9:q3,#|q2,#,1
+	14@1#5:q2,x|q2,x,2
+	15@2#4:q2,a|q4,x,3
+	16@3#11:q4,x|q4,x,4
+	17@4#10:q4,a|q5,a,5
+	18@5#14:q5,x|q5,x,6
+	19@6#15:q5,_|qreject,_,7
+	Rejected: #xxxax
+
+	Tape: aaaaaaa
+	1@0#1:q1,a|q2,#,1
+	2@1#4:q2,a|q4,x,2
+	3@2#10:q4,a|q5,a,3
+	4@3#13:q5,a|q4,x,4
+	5@4#10:q4,a|q5,a,5
+	6@5#13:q5,a|q4,x,6
+	7@6#10:q4,a|q5,a,7
+	8@7#15:q5,_|qreject,_,8
+	Rejected: #xaxaxa
+
+	Tape: aaaaaaaa
+	1@0#1:q1,a|q2,#,1
+	2@1#4:q2,a|q4,x,2
+	3@2#10:q4,a|q5,a,3
+	4@3#13:q5,a|q4,x,4
+	5@4#10:q4,a|q5,a,5
+	6@5#13:q5,a|q4,x,6
+	7@6#10:q4,a|q5,a,7
+	8@7#13:q5,a|q4,x,8
+	9@8#12:q4,_|q3,_,7
+	10@7#8:q3,x|q3,x,6
+	11@6#7:q3,a|q3,a,5
+	12@5#8:q3,x|q3,x,4
+	13@4#7:q3,a|q3,a,3
+	14@3#8:q3,x|q3,x,2
+	15@2#7:q3,a|q3,a,1
+	16@1#8:q3,x|q3,x,0
+	17@0#9:q3,#|q2,#,1
+	18@1#5:q2,x|q2,x,2
+	19@2#4:q2,a|q4,x,3
+	20@3#11:q4,x|q4,x,4
+	21@4#10:q4,a|q5,a,5
+	22@5#14:q5,x|q5,x,6
+	23@6#13:q5,a|q4,x,7
+	24@7#11:q4,x|q4,x,8
+	25@8#12:q4,_|q3,_,7
+	26@7#8:q3,x|q3,x,6
+	27@6#8:q3,x|q3,x,5
+	28@5#8:q3,x|q3,x,4
+	29@4#7:q3,a|q3,a,3
+	30@3#8:q3,x|q3,x,2
+	31@2#8:q3,x|q3,x,1
+	32@1#8:q3,x|q3,x,0
+	33@0#9:q3,#|q2,#,1
+	34@1#5:q2,x|q2,x,2
+	35@2#5:q2,x|q2,x,3
+	36@3#5:q2,x|q2,x,4
+	37@4#4:q2,a|q4,x,5
+	38@5#11:q4,x|q4,x,6
+	39@6#11:q4,x|q4,x,7
+	40@7#11:q4,x|q4,x,8
+	41@8#12:q4,_|q3,_,7
+	42@7#8:q3,x|q3,x,6
+	43@6#8:q3,x|q3,x,5
+	44@5#8:q3,x|q3,x,4
+	45@4#8:q3,x|q3,x,3
+	46@3#8:q3,x|q3,x,2
+	47@2#8:q3,x|q3,x,1
+	48@1#8:q3,x|q3,x,0
+	49@0#9:q3,#|q2,#,1
+	50@1#5:q2,x|q2,x,2
+	51@2#5:q2,x|q2,x,3
+	52@3#5:q2,x|q2,x,4
+	53@4#5:q2,x|q2,x,5
+	54@5#5:q2,x|q2,x,6
+	55@6#5:q2,x|q2,x,7
+	56@7#5:q2,x|q2,x,8
+	57@8#6:q2,_|qaccept,_,9
+	Accepted: #xxxxxxx
+
+	Tape: aaaaaaaaa
+	1@0#1:q1,a|q2,#,1
+	2@1#4:q2,a|q4,x,2
+	3@2#10:q4,a|q5,a,3
+	4@3#13:q5,a|q4,x,4
+	5@4#10:q4,a|q5,a,5
+	6@5#13:q5,a|q4,x,6
+	7@6#10:q4,a|q5,a,7
+	8@7#13:q5,a|q4,x,8
+	9@8#10:q4,a|q5,a,9
+	10@9#15:q5,_|qreject,_,10
+	Rejected: #xaxaxaxa
