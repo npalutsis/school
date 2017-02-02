@@ -1,0 +1,179 @@
+#Computer Architecture: Homework 1
+**Name:** Nick Palutsis  
+**Date:** February 2, 2017
+
+##Question 1 A:  
+```
+    MOV    R10, #1
+    MOV    R1, #0
+    MOV    R2, #100
+
+P:  ADD    R5, R3, R4
+    MULT   R6, R3, R4
+    MULT   R3, R5, R6
+    ADD    R1, R1, R10
+    SUB    R5, R2, R1
+    JUMPZ  R5, Q
+    JUMPZ  R0, P
+Q:  
+```
+
+##Question 1 B:  
+```
+1 * 3 = 3
+1 * 3 = 3
+1 * 3 = 3
+100 * 3 = 300
+100 * 3 = 300
+100 * 3 = 300
+100 * 3 = 300
+100 * 3 = 300
+1 * 4 + 99 * 3 = 301
+99 * 4 = 396
+```
+2206 cycles  
+
+##Question 2 A:  
+```
+MOV  R5, R1
+MOV  R1, R2
+MOV  R2, R3
+MOV  R3, R5
+```
+4 instructions  
+
+##Question 2 B:  
+```
+Given Instructions:
+    MOV R10, #24
+    SUB R4, R3, R3
+
+Machine Binary:
+    0011 1010 00011000
+    0100 0100 0011 0011
+
+Machine Hex:
+    0x3A18
+    0x4433
+```
+
+##Question 3 A:  
+To further modify the code, another multiplexer should be added to increment the value of Rp. The initial augmented path will reassign Rw, but Rp and Rw should feed into a new multiplexer which will decide to either reassign Rp or increment and store Rw. The multiplexer will occur before the old mux with D_addr. Eight bits from this output will be passed into memory like before.
+
+![alt text][datapath]
+
+[datapath]: https://github.com/npalutsis/cse30321/blob/master/datapath.PNG "Modified Datapath"
+
+##Question 3 B:  
+This instruction will take 4 clock cycles. The normal load instruction only undergoes 3 clock cycles because it must fetch, decode, and execute the instruction. However, LOAD++ must undergo a two-step execution process since it must choose between storing Rw and also iterating and storing Rp. This extra step that LOAD++ possesses over LOAD costs the CPU an extra clock cycle every time this instruction is called.
+
+##Question 4 A:  
+```
+      CMP   R1, 10
+      B.GE  ELSE
+      MUL   R2, R1, R3
+      B     OUT
+
+ELSE: ADD  R2, R1, R3
+OUT:  
+```
+
+##Question 4 B: 
+```
+    ADD  R1, R0, #100    // R1 stores the result of R0 + 100, i.e. 0 + 100 = 100
+Q:  CMP  R1, #1000       // compares R1 to 1000, i.e. R1 - 1000 (initially 100 - 1000)
+    BGT  P               // if R1 > 1000, then jump to P. Else, proceed (initially 100 !> 1000)
+    STR  R1, R1          // copy data of R1 to memory address of R1, i.e. R1 = R1  
+    ADD  R1, R1, #100    // R1 = R1 + 100, i.e. add 100 to value of R1
+    B    Q               // jump up to branch Q, i.e. repeat loop
+P:
+```
+The ARM sequence acts as a while loop. It first adds 100 and 0 and stores that result in `R1`. It then checks if `R1 <= 1000`. If it is, the code will continue. If not, then it will jump to branch `P` in the code. Since `R1 < 1000` initially, it then sets `R1` equal to itself. It then performs `R1 = R1 + 100` before returning back to the top of the while loop at `Q`. This loop occurs ten times until `R1 > 1000` so that it jumps to `P` instead.  
+
+##Question 4 C: 
+```
+    ADD   R1, R0, R0     // R1 = R0 + R0, i.e. R1 = 0 + 0 = 0
+    ADD   R2, R0, #2     // R2 = R0 + 2, i.e. R2 = 0 + 2 = 2
+X:  CMP   R1, #100       // compare R1 t0 100, i.e. R1 - 100 (initially 0 - 100)
+    BEQ   Y              // if R1 = 100, then jump to Y. Else, proceed (initially 0 != 100)
+    MULT  R5, R3, R4     // R5 = R3 * R4
+    ADD   R6, R3, R4     // R6 = R3 + R4
+    MULT  R3, R5, R6     // R3 = R5 * R6
+    ADD   R1, R1, 1      // R1 = R1 + 1
+    B     X              // jump up to branch X, i.e. repeat loop
+Y:  STR   R3, R2         // store data of R3 in address of R2, i.e. R2 = R3
+```
+The ARM sequence first performs `0 + 0 = 0` and stores the output in `R1` which will serve as the iterator for the for loop. It then stores the output of `0 + 2 = 2` in `R2`. Next, it compares `R1` to 100. If they are equal then it skips the code and goes to Y. Initially, `R1 < 100` so it just proceeds. `R3` stores the output of `(R3 * R4) * (R3 + R4)`. `R1` is then incremented by 1. It then returns to the top of the for loop at `X` and runs the comparison again. When `R1 = 100` the loop ends and the code proceeds.
+
+##Question 5 A: 
+```
+Instruction Count * CPI * CC Time = CPU Time
+
+Original:
+    2.0 GHz = (2.0 * 10^9)^-1
+
+    230,100,100 * [ 3 * .4 
+                  + 7 * .05 
+                  + 5 * .2 
+                  + 4 * .1 
+                  + 4 * .25 ] * (2.0 * 10^9)^-1 = CPU Time
+
+    CPU Time = 0.4544476975
+
+New Chip:
+    2.3 GHz = (2.3 * 10^9)^-1
+
+    230,100,100 * [ 3 * .4 
+                  + 6 * .05 
+                  + 5 * .2 * .75 + 11 * .2 * .25
+                  + 4 * .1 * .75 + 10 * .1 * .25
+                  + 4 * .25 ] * (2.3 * 10^9)^-1 = CPU Time
+
+    CPU Time = 0.4351893195
+
+Improvement:
+    (Original - New Chip) / Original
+    (0.4544476975 - 0.4351893195) / 0.4544476975 = 4.24% improvement
+```    
+
+##Question 5 B:  
+```
+Instruction Count * CPI * CC Time = CPU Time
+
+    230,100,100 * [ 3 * .4 
+                  + 6 * .05 
+                  + 5 * .2 * (1-N) + 15 * .2 * N
+                  + 4 * .1 * (1-N) + 14 * .1 * N
+                  + 4 * .25 ] * (2.3 * 10^9)^-1 = 0.4544476975
+
+    x = 0.2141 = 21.41% improvement
+```
+
+##Question 6 A:  
+Loop unrolling minimizes the number of times jump instructions are called, which is increasingly more important with more loop iterations. This reduces the number of clock cycles overall, and it speeds up performance for the program.  
+
+##Question 6 B: 
+```
+f(x) = [MOV * 3] + [#unrolled * L,A,S * 3] + [#loop * iterator] + [#brT * 4] + [#brNT * 3] + [#brT * 4]
+
+f(x) = (4 * 3) + (x (3 * 3)) + (((N / x) -1) * (2 * 3)) + (1 * 4) + (3 ((N / x) -1)) + (4 ((N / x) - 1))
+
+f(x) = 13 * ((N / x) -1) + 9x + 16
+```
+![alt text][graph1]
+
+[graph1]: https://github.com/npalutsis/cse30321/blob/master/graph1.PNG "Clock Cycle Graph"
+
+##Question 6 C: 
+```
+f(x) = [4 * MOV] + [#unrolled * L,A,S] + [#loops * A,S] + [1 time taken] + [#loops]
+
+f(x) = 4 + (x * 3) + (((N / x) - 1) * 2) + 1 + ((N / x) - 1)
+
+f(x) = 3x + 2 + (3N / x)
+```
+![alt text][graph2]
+
+[graph2]: https://github.com/npalutsis/cse30321/blob/master/graph2.PNG "Instruction Count Graph"
+
+The minimum positive value of the first graph is sqrt(65) * (100 / 3) which is approximately 268.7. The minimum positive value of the second graph is sqrt(5) * 100 which is approximately 223.6. The median value between these two points is about 246.15. In order to find a balance between the fewest number of clock cycles as in the first graph and the fewest number of instructions I would unroll the loop 246 times to try and maximize the performance. 
