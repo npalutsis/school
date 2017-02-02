@@ -1,0 +1,211 @@
+//Author: Nick Palutsis
+   // Class: CSE 20211
+   // Lab 8
+   // Date: November 6, 2015
+
+// Graph the taylor series expansion for sin(x)
+   // Pressing '1'-'9' uses that many terms
+   // Pressing '0' uses 10 terms
+   // Pressing the space bar allows the user to enter specific number
+   // Pressing '+' increases the number of terms by 1
+   // Pressing '-' decreases the number of terms by 1
+   // Pressing 'q' quits the program
+
+#include <stdio.h>
+#include <unistd.h>
+#include <math.h>
+#include <string.h>
+#include "gfx.h"
+
+void draw_axis(int wd, int ht, int xorigin, int yorigin);
+void print_terms(int nterms);
+void draw_sin(int xorigin, int yorigin);
+void draw_sin_taylor(int xorigin, int yorigin, int ht, int nterms);
+long long factorial(int x);
+long double calculate_taylor(double x, int nterms);
+char *num2str(int n);
+
+int main(void)
+{
+   int wd = 1000;
+   int ht = 1000;
+   int xorigin = wd / 2;
+   int yorigin = ht / 2;
+   int nterms;
+   char c;
+   
+   printf("Enter the number of terms: ");
+   scanf("%d", &nterms);
+   
+   gfx_open(wd, ht, "Graphing Calculator");
+   
+   while(1) { 
+      gfx_clear();
+      gfx_flush;
+
+      gfx_color(150, 150, 150);
+      draw_axis(wd, ht, xorigin, yorigin);            // Draw axis
+         
+      gfx_color(255, 0, 0);
+      draw_sin(xorigin, yorigin);                     // Plot sin(x)
+      
+      gfx_color(0, 255, 0);
+      draw_sin_taylor(xorigin, yorigin, ht, nterms);  // Plot taylor series
+      
+   print_terms(nterms);                               // Display number of terms on screen
+      
+      gfx_flush;
+
+      c = gfx_wait();                                 // User input
+         if(c == 'q')		// Quits program
+            break;
+         else if(c >= '1' && c <= '9')
+            nterms = c - '1' + 1;
+         else if(c == '0')
+            nterms = 10;
+         else if(c == '=')
+            nterms = nterms + 1;
+         else if(c == '-')
+            nterms = nterms - 1;
+         else if(c == ' '){
+            printf("Enter the number of terms: ");
+            scanf("%d", &nterms);
+         }
+      }
+   //}
+   
+   return 0;
+}
+
+
+
+
+// Draw the axis at middle of window
+void draw_axis(int wd, int ht, int xorigin, int yorigin){
+   int i;
+   
+   // Axis
+   gfx_line(0, yorigin, wd, yorigin);
+   gfx_line(xorigin, 0, xorigin, ht);
+   
+   // Tick marks and numbers
+   for(i = -9; i < 10; i++){
+      gfx_line(xorigin + xorigin / 10 * i, yorigin - 10, xorigin + xorigin / 10 * i, yorigin + 10);
+      if(i == 0)
+         continue;
+      else if(i < 0)
+         gfx_text(xorigin + xorigin / 10 * i - 8, yorigin + 24, num2str(i));
+      else if(i > 0)
+         gfx_text(xorigin + xorigin / 10 * i - 2, yorigin + 24, num2str(i));
+      
+      gfx_line(xorigin + 10, yorigin - yorigin / 10 * i, xorigin - 10, yorigin - yorigin / 10 * i);
+      if(i != 0)
+         gfx_text(xorigin + 15, yorigin - yorigin / 10 * i + 5, num2str(i));
+   }
+}
+
+void print_terms(int nterms)
+{
+   char string[50];
+
+   strcpy(string, "Number of terms: ");
+   strcat(string, num2str(nterms));
+   gfx_text(10, 20, string);
+}
+
+// Plots sin(x)
+void draw_sin(int xorigin, int yorigin)
+{
+   int i;
+   double x1, x2;
+   double y1, y2;
+   double function1;
+   double function2;
+   for(i = 0; i <= xorigin; i++){
+      // For positive x
+      x1 = (i * (.02));
+      x2 = x1 + (.02);
+      function1 = sin(x1);
+      function2 = sin(x2);
+      y1 = -(function1) / (.02) + yorigin;
+      y2 = -(function2) / (.02) + yorigin;
+      x1 = i + xorigin;
+      x2 = x1 + 1;
+      gfx_line(x1, y1, x2, y2);
+         
+      // For negative x
+      x1 = -(i * (.02));
+      x2 = x1 - (.02);
+      function1 = sin(x1);
+      function2 = sin(x2);
+      y1 = -(function1) / (.02) + yorigin;
+      y2 = -(function2) / (.02) + yorigin;
+      x1 = xorigin - i;
+      x2 = x1 - 1;
+      gfx_line(x1, y1, x2, y2);
+   }
+}
+
+// Plots the tayor series expanded by n terms
+// Not accurate past 10 terms because factorial is not accurate past 20!
+void draw_sin_taylor(int xorigin, int yorigin, int ht, int nterms)
+{
+   int i, j;
+   double x1, x2;
+   double y1, y2;
+   
+   for(i = 0; i <= xorigin; i++){
+      // For Positive x
+      x1 = (i * (.02));
+      x2 = x1 + (.02);
+      y1 = -(calculate_taylor(x1, nterms)) / (.02) + yorigin;
+      y2 = -(calculate_taylor(x2, nterms)) / (.02) + yorigin;
+      x1 = i + xorigin;
+      x2 = x1 + 1;
+      if (y1 > 0 && y2 > 0 && y1 < ht && y2 < ht)
+         gfx_line(x1, y1, x2, y2);
+      
+      // For Negative x
+      x1 = -(i * (.02));
+      x2 = x1 - (.02);
+      y1 = -(calculate_taylor(x1, nterms)) / (.02) + yorigin;
+      y2 = -(calculate_taylor(x2, nterms)) / (.02) + yorigin;
+      x1 = xorigin - i;
+      x2 = x1 - 1;
+      if (y1 > 0 && y2 > 0 && y1 < ht && y2 < ht)
+         gfx_line(x1, y1, x2, y2);
+   }
+}
+
+// Calculates the factorial of a set number
+// Not accurate past 20! due to size of the numbers
+long long factorial(int x)
+{
+   int i;
+   long long fact = 1;
+   
+   for(i = 1; i <= x; i++)
+      fact = fact * i;
+   
+   return fact;
+}
+
+long double calculate_taylor(double x, int nterms)
+{
+   int i;
+   long double taylor = 0;
+   
+   for(i = 1; i <= nterms; i++)
+      taylor = taylor + (pow(-1, i - 1) * pow(x, 2 * i - 1) / factorial(2 * i - 1));
+   
+   return taylor;
+}
+
+// Changes int to string
+char *num2str(int n)
+{
+  static char a[10], *p = a;
+  snprintf(p, 10, "%d", n);
+  return p;
+}
+

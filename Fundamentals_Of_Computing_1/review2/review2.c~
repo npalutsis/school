@@ -1,0 +1,28 @@
+//Author: Nick Palutsis
+   // Class: CSE 20211
+   // Review 2
+   // Date: November 10, 2015
+   
+#include <stdio.h>
+#include <math.h>
+#include <string.h>
+#include <ctype.h>
+
+int main(void){
+   char c;
+   char file[50]; // input for file name
+   FILE *txt_file;
+   
+   printf("What is the name of the file you would like to read: ");
+   scanf("%s", file);
+   printf("What is the name of the file you would like to read: ");
+ 
+   while (c != EOF) { //read until end of document
+      c = fgetc(txt_file);
+      if (c == EOF) 
+         break; 
+      printf("%c", c);
+   }
+   
+   return 0;
+}

@@ -1,0 +1,16 @@
+1357 Smith 32 9.75
+2424 Johnson 33 8.25
+2869 Lopez 42 8.45
+3853 Cho 41 7.90
+4464 Adams 37 9.10
+4589 Berndt 32 7.90
+4826 Dupont 41 8.45
+5631 Bernstein 40 7.85
+5866 Abdullah 38 8.65
+6237 Grant 43 9.40
+6745 Fitzpatrick 44 8.25
+7455 Duncan 40 8.55
+7703 Cortana 42 9.25
+8281 Wang 31 9.40
+8529 Maxwell 36 8.60
+

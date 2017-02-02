@@ -1,0 +1,8 @@
+struct ship{
+   double x;
+   double y;
+   double pX;
+   double pY;
+   double theta;
+   int v;
+}

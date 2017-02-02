@@ -1,0 +1,30 @@
+Author: Nick Palutsis
+Class: CSE 20211
+Lab: 4
+
+   In ndfootball.c the program prompts the user for four possible options: to display
+the record for a given year, to show all years with "n" wins, to show all years with
+"n" losses, or to exit the program. If the user's input is not one of these options
+then the program will sense the error and ask the user again.
+   The program works by first utilizing the do while loop so that it will continue
+prompting the user until they enter "4" which satisfies the condition for the loop
+and quits the program. The code will provide four options to the user with values one
+through four assigned to each option. The scanf function then reads the input from
+the user, and it enters the corresponding case for a switch statement. In case 1 the 
+user is asked for a year, and then 1900 is then subtracted from this value in order 
+to find the corresponding elements in the wins and losses arrays to display them to
+the user. Case 2 prompts the user for a value, and then using a for loop it cycles 
+through every element of the wins array. If the element is less than the value it does
+nothing, but if it is greater than or equal to the value then 1900 is added to the 
+index for that element and then printed to display a year that had at least "n" wins.
+A variable "noyears" is then switched from true to false. If no years had been found 
+with the set number of wins then the if statement will print to the user that no years
+were found with that many wins. The variable is then reset to true at the top of the
+do while loop. Case 3 functions the same as case 2 except that it checks the losses
+array. In case 4 the program immediately breaks from the case and will then exit the
+while loop too. If none of these cases are chosen, the default case is set to tell
+the user to enter a valid input.
+   The program was checked but running through each case and testing that it displayed
+the right record and years for several different entries. The program was also tested
+for invaled inputs (numbers other than 1, 2, 3, or 4) and it displayed the error
+message as intended.

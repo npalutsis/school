@@ -1,0 +1,301 @@
+// Author: Nick Palutsis
+   // Class: CSE 20211
+   // Lab7
+   // Date: November 22, 2015
+   
+// Opens a window and draws various fractal designs
+
+#include <stdio.h>
+#include <unistd.h>
+#include <math.h>
+#include "gfx3.h"
+
+void draw_triangle( int, int, int, int, int, int );
+void draw_square( int, int, int );
+void five_lines( int, double, int, int );
+void sierpinski( int, int, int, int, int, int );
+void square_shrink( int, int, int );
+void square_spiral( int, int, double, int );
+void circle_lace( int, int, int );
+void snowflake( int, double, int, int );
+void tree( int, int, int, double );
+void fern( int, int, int, double );
+void spirals( int, int, double, int, int, int );
+void draw_spiral( int, double, int, int );
+
+int main(void){
+   int wd;
+   int ht;
+   int size;
+   char c;
+   
+   wd = gfx_screenwidth() / 2;
+   ht = gfx_screenheight() / 2;
+   if( wd < ht )
+      size = wd;
+   else
+      size = ht;
+   gfx_open(size, size, "Fractal");
+   
+   while(1){
+      
+      gfx_flush;
+      
+      if(gfx_event_waiting()){
+         c = gfx_wait();
+         if(c  == 'q' )
+            break;
+         else if( c == '1' ){
+            gfx_clear();
+            gfx_color( 250, 230, 20 );
+            sierpinski( size/2, size/5, size/6, size*4/5, size*5/6, size*4/5 );}
+         else if( c == '2'){
+            gfx_clear();
+            gfx_color( 0, 255, 0 );
+            square_shrink( size/4, size/2, size/2 );
+         }
+         else if( c == '3' ){
+            gfx_clear();
+            gfx_color( 255, 100, 20 );
+            square_spiral( size/6, size*3/5, M_PI, size );
+            gfx_color( 50, 195, 255 );
+            square_spiral( size/6, size*3/5, 2*M_PI, size );
+         }
+         else if( c == '4' ){
+            gfx_clear();
+            gfx_color( 255, 0, 0 );
+            circle_lace( size/3, size/2, size/2 );
+         }
+         else if( c == '5' ){
+            gfx_clear();
+            gfx_color( 255, 255, 255 );
+            snowflake( size/3, -M_PI/2, size/2, size/2 );
+         }
+         else if( c == '6' ){
+            gfx_clear();
+            gfx_color( 255, 160, 0 );
+            tree( size/2, size*5/6, size/4, -M_PI/2 );
+         }
+         else if( c == '7' ){
+            gfx_clear();
+            gfx_color( 115, 230, 255 );
+            fern( size/2, size*9/10, size*3/5, -M_PI/2 );
+         }
+         else if( c == '8' ){
+            gfx_clear();
+            gfx_color( 255, 115, 215 );
+            spirals( size/7, size*3/5, M_PI, size/2, size/2, size );
+         }
+      }
+   }
+   return 0;
+}
+//======================================================================
+
+void draw_triangle( int x1, int y1, int x2, int y2, int x3, int y3 )
+{
+   gfx_line( x1, y1, x2, y2);
+   gfx_line( x2, y2, x3, y3);
+   gfx_line( x3, y3, x1, y1);
+}
+//-----------------------------------------------------------------------
+
+void draw_square( int r, int xCenter, int yCenter )
+{
+   int x1, y1;
+   int x2, y2;
+   int i;
+   int nsides = 4;
+   double startTheta = M_PI/4;
+   double theta;
+
+   theta = 2 * M_PI / nsides;
+   x1 = r * cos(startTheta) + xCenter;
+   y1 = r * sin(startTheta) + yCenter;
+
+   for(i = 1; i <= nsides; i++){
+      x2 = r * cos(i * theta + startTheta) + xCenter;
+      y2 = r * sin(i * theta + startTheta) + yCenter;
+      gfx_line(x1, y1, x2, y2);
+      x1 = x2;
+      y1 = y2;
+   }
+}
+//-----------------------------------------------------------------------
+
+void five_lines( int r, double theta, int xCenter, int yCenter )
+{
+   gfx_line( xCenter, yCenter, r*cos(theta+M_PI*2/5)+xCenter, r*sin(theta+M_PI*2/5)+yCenter );
+   gfx_line( xCenter, yCenter, r*cos(theta+2*M_PI*2/5)+xCenter, r*sin(theta+2*M_PI*2/5)+yCenter );
+   gfx_line( xCenter, yCenter, r*cos(theta+3*M_PI*2/5)+xCenter, r*sin(theta+3*M_PI*2/5)+yCenter );
+   gfx_line( xCenter, yCenter, r*cos(theta+4*M_PI*2/5)+xCenter, r*sin(theta+4*M_PI*2/5)+yCenter );
+   gfx_line( xCenter, yCenter, r*cos(theta+5*M_PI*2/5)+xCenter, r*sin(theta+5*M_PI*2/5)+yCenter );
+}
+//-----------------------------------------------------------------------
+
+void sierpinski( int x1, int y1, int x2, int y2, int x3, int y3 )
+{
+   // Base case. 
+   if( abs(x2-x1) < 2 ) 
+      return;
+
+   // Draw the triangle
+   draw_triangle( x1, y1, x2, y2, x3, y3 );
+
+   // Recursive calls
+   sierpinski( x1, y1, (x1+x2)/2, (y1+y2)/2, (x1+x3)/2, (y1+y3)/2 );
+   sierpinski( (x1+x2)/2, (y1+y2)/2, x2, y2, (x2+x3)/2, (y2+y3)/2 );
+   sierpinski( (x1+x3)/2, (y1+y3)/2, (x2+x3)/2, (y2+y3)/2, x3, y3 );
+}
+//-----------------------------------------------------------------------
+
+void square_shrink( int r, int xCenter, int yCenter )
+{
+   int d = r*sin(M_PI/4);
+   
+   // Base case
+   if( abs(r) < 5 )
+      return;
+   
+   // Draw square
+   draw_square( r, xCenter, yCenter );
+   
+   // Recursive calls
+   square_shrink( r*49/100, xCenter+d, yCenter+d );
+   square_shrink( r*49/100, xCenter+d, yCenter-d );
+   square_shrink( r*49/100, xCenter-d, yCenter+d );
+   square_shrink( r*49/100, xCenter-d, yCenter-d );
+}
+//-----------------------------------------------------------------------
+
+void square_spiral( int r, int R, double theta, int size )
+{
+   double dtheta = M_PI/6;
+   
+   if( abs(r) < 2 )
+      return;
+      
+   draw_square( r, R*cos(theta)+(size/2), R*sin(theta)+(size/2) );
+   square_spiral( r*5/6, R*7/8, theta+dtheta, size );
+}
+//-----------------------------------------------------------------------
+
+void circle_lace( int r, int xCenter, int yCenter )
+{
+   int dr = 3;
+   
+   if( abs(r) < 2 )
+      return;
+      
+   gfx_circle( xCenter, yCenter, r );
+   
+   circle_lace( r/dr, r*cos(M_PI/3)+xCenter, r*sin(M_PI/3)+yCenter );
+   circle_lace( r/dr, r*cos(M_PI*2/3)+xCenter, r*sin(M_PI*2/3)+yCenter );
+   circle_lace( r/dr, r*cos(M_PI)+xCenter, r*sin(M_PI)+yCenter );
+   circle_lace( r/dr, r*cos(M_PI*4/3)+xCenter, r*sin(M_PI*4/3)+yCenter );
+   circle_lace( r/dr, r*cos(M_PI*5/3)+xCenter, r*sin(M_PI*5/3)+yCenter );
+   circle_lace( r/dr, r*cos(M_PI*2)+xCenter, r*sin(M_PI*2)+yCenter );
+}
+//-----------------------------------------------------------------------
+
+void snowflake( int r, double theta, int xCenter, int yCenter )
+{
+   if( abs(r) < 2 )
+      return;
+   
+   five_lines( r, theta, xCenter, yCenter );
+   
+   snowflake( r*2/5, theta, r*cos(theta+M_PI*2/5)+xCenter, r*sin(theta+M_PI*2/5)+yCenter );
+   snowflake( r*2/5, theta, r*cos(theta+2*M_PI*2/5)+xCenter, r*sin(theta+2*M_PI*2/5)+yCenter );
+   snowflake( r*2/5, theta, r*cos(theta+3*M_PI*2/5)+xCenter, r*sin(theta+3*M_PI*2/5)+yCenter );
+   snowflake( r*2/5, theta, r*cos(theta+4*M_PI*2/5)+xCenter, r*sin(theta+4*M_PI*2/5)+yCenter );
+   snowflake( r*2/5, theta, r*cos(theta+5*M_PI*2/5)+xCenter, r*sin(theta+5*M_PI*2/5)+yCenter );
+}
+//-----------------------------------------------------------------------
+
+void tree( int xstart, int ystart, int r, double theta )
+{
+   double dtheta = M_PI/6;
+   
+   if(abs(r) < 2 )
+      return;
+      
+   gfx_line( xstart, ystart, r*cos(theta)+xstart, r*sin(theta)+ystart );
+   
+   tree( r*cos(theta)+xstart, r*sin(theta)+ystart, r*2/3, theta+dtheta );
+   tree( r*cos(theta)+xstart, r*sin(theta)+ystart, r*2/3, theta-dtheta );
+}
+//-----------------------------------------------------------------------
+
+void fern( int xstart, int ystart, int r, double theta )
+{
+   double dtheta = M_PI/4;
+   int new_r;
+   
+   if( abs(r) < 5 )
+      return;
+   
+   gfx_line( xstart, ystart, r*cos(theta)+xstart, r*sin(theta)+ystart );
+   
+   new_r = r/3;
+
+   fern( r*cos(theta)*1/5+xstart, r*sin(theta)*1/5+ystart, new_r, theta+dtheta );
+   fern( r*cos(theta)*1/5+xstart, r*sin(theta)*1/5+ystart, new_r, theta-dtheta );
+
+   fern( r*cos(theta)*2/5+xstart, r*sin(theta)*2/5+ystart, new_r, theta+dtheta );
+   fern( r*cos(theta)*2/5+xstart, r*sin(theta)*2/5+ystart, new_r, theta-dtheta );
+   
+   fern( r*cos(theta)*3/5+xstart, r*sin(theta)*3/5+ystart, new_r, theta+dtheta );
+   fern( r*cos(theta)*3/5+xstart, r*sin(theta)*3/5+ystart, new_r, theta-dtheta );
+   
+   fern( r*cos(theta)*4/5+xstart, r*sin(theta)*4/5+ystart, new_r, theta+dtheta );
+   fern( r*cos(theta)*4/5+xstart, r*sin(theta)*4/5+ystart, new_r, theta-dtheta );
+   
+   fern( r*cos(theta)+xstart, r*sin(theta)+ystart, new_r, theta+dtheta );
+   fern( r*cos(theta)+xstart, r*sin(theta)+ystart, new_r, theta-dtheta );
+}
+//-----------------------------------------------------------------------
+
+void spirals( int r, int R, double theta, int x, int y, int size )
+{
+   double dtheta = M_PI/6;
+   
+   if( abs(r) < 1 )
+      return;
+   
+   if( R < 20 )
+      draw_spiral( R, theta, x, y );
+
+   spirals( r*2/5, r, theta+dtheta, R*cos(theta)+x, R*sin(theta)+y, size );
+   spirals( r*19/20, R*14/15, theta+dtheta, x, y, size );
+}
+//-----------------------------------------------------------------------
+
+void draw_spiral( int R, double theta, int x, int y )
+{
+   double dtheta = .1;
+   int dr;
+   
+   while( R > 2 ){
+      dr = R*99/100;
+      gfx_line( R*cos(theta)+x, R*sin(theta)+y, dr*cos(theta+dtheta)+x, dr*sin(theta+dtheta)+y );
+      R = dr;
+      theta = theta+dtheta;
+   }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

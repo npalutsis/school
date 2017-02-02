@@ -1,0 +1,31 @@
+/* Author: Nick Palutsis
+   Date: October 14, 2015 */
+
+// Use Euclidean Algorithm to find greatest common denominator
+
+#include <stdio.h>
+
+int main(void){
+   int x, y, a, b, r;
+   
+   printf("Enter two numbers: ");
+   scanf("%d %d", &x, &y);
+   
+   if(x <= y){
+      b = x;
+      x = y;
+      y = b;
+   }
+   
+   while(y != 0){
+      r = x % y;
+      x = y;
+      printf("%d\n%d\n\n", x, r);
+      
+      y = r;
+   }
+   
+   printf("The greatest common denominator is %d\n", x);
+   
+   return 0;
+}

@@ -1,0 +1,37 @@
+Author: Nick Palutsis
+
+   When implemented, the program "graph" will tell the user that it will plot
+y = 15 + 10 * sin(.1 * x^2) over the set range of -15 to 15. It then creates an X-Y
+table for the user which displays the x and y coordinates being evaluated. Next to 
+this table the graph of the function will be displayed for the user using a series of
+'#' to show the position of the points with the x axis shown vertically and the y axis
+shown horizonatlly. At the end of the program the user will see the x coordinate of 
+both the maximum and minimum.
+   Internally, the program works by first setting the range for the plot using the 
+variables 'a' and 'b'. The 'printf()' function was then used to describe the purpose
+of the program to the user and add headings to the table. The function was then run
+at the x value for 'a' so that it could be set equal to 'ymax' and 'ymin' in order 
+to set the initial maximum and minimum. A for loop was used to repeatedly plug in
+the next x value into the function. If statements were used to reevaluate the 
+maximum and minimums if necessary. If they changed, the new values were saved. The
+x and y values were displayed to the user. The y value was then rounded to the nearest
+integer using the 'round()' function. A nested for loop was then used to print the 
+string '#' for 'y' iterations in order to create the graph. Once the original for loop
+had run through the set range the maximum and minimums are displayed to the user, and
+the program ends.
+   I verified that the program was correct by first plugging the function into my 
+graphing calculator. This showed me what the graph should look like as well as a table
+of x and y vlaues that 
+
+nick is a dumbass and seriously needs help with his wardrobe. BUT luckily he has a
+ great friend maddie who will help him in his time of need. although not everyone can 
+ help stupid but since maddie is just so brillant i guess she will try her best and 
+ succeed. First we will start by burning every piece of clothing he owns. Next maddie 
+ will have a diet coke to feel better. Finally Nick will no longer look like a 
+ homeless person thanks to maddies help. P.S. what is a ASCII Art Graph? Does it have 
+ pretty colors. I love colors even if you wear them wrong. I'm really good at rambling, 
+ can you tell? Hurry up and write a damn sentence!!!!!!!!!!!!! I'm bored.....all of 
+ your flaws and banana.....I want to play a song and you have my computer so i will 
+ sing to myself. in my head I see you all over....jason derulo....so TRY ME in morning 
+ when the sun comes rising up so TRY ME in the evening when you just cant get...girl 
+ your so damn fine though I wanna hit you from ......WAHHHHHH

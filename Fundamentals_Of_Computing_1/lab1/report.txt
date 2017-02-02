@@ -1,0 +1,20 @@
+Author: Nick Palutsis
+Date: September 6, 2015
+Class: CSE 20211
+Lab 1
+
+
+Part 3: This program helps users use basic kinematics in order to calculate the new
+position of an object. It prompts the user to provide the initial position, initial 
+velocity, acceleration, and duration of motion in order to calculate the new position
+using the equation x = x0 * t + .5 * a * t^2 and display it for the user. This was
+executed by using the printf function in order to prompt the user for the values, and
+then the scanf function was used to assign the values to the variables with the help
+of %f because the values were float variables. An if statement was used after the t
+variable was assigned. If the number was zero or positive the program continued on,
+but if the input was negative a message was displayed to the user and return 0 was 
+used to end the program prematurely. The value of the final position was also set to
+round to three decimal points by adding %.3f instead of just %f. The program was
+tested for correctness by inputing various numbers and checking the output compared 
+to a calculator. It was also tested for negative values and it worked properly and 
+ended the program when t < 0.
