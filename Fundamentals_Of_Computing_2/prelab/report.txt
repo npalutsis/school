@@ -1,0 +1,8 @@
+Author: Nick Palutsis
+   Date: January 20, 2015
+   Prelab
+   CSE 20212
+   
+   This program asks the user for three inputs: principal, rate, and payment amount. It then will use this data to print an amortization table featuring the month, payment size, monthly interest, and remaining balance. It also shows a second default mortgage of $100,000 which is credited $10,000 using a separate function. If the user enters a negative value for their inputs or a payment size that is smaller than the size of the interest then an error message will be displayed and the program will quit.
+   The program operates using a main.cpp file which is reponsible for retrieving the user's inputs as well as checking for invalid inputs. It then passes these variables to the mortgage class files. the mortgage.h contains the constructor, default constructor, and function prototypes publicly, as well as private variables. the mortgage.cpp file contains the acual functions for these prototypes. get and set functions are used to access the private variables. The function amortize() in this class is placed in the main.cpp, and it does some calculatons and uses setw() and setprecision() to help format the amortization table it prints out.
+   The program was tested by checking to make sure it printed out the correct outputs as shown in the example on the rubric. It was also tested by entering 0/negative numbers for the inputs to make sure that an error message was displayed and that the program quit. It also was tested to ensure that the program quit when payment amounts entered that were less than the amount of interest were entered so that the balance did not increase infinitely.

@@ -1,0 +1,14 @@
+Author: Nick Palutsis
+Date: April 20, 2016
+CSE 20212
+Lab 10
+
+	The unique file prompts the user to enter two files. It then displays how many unique words the first file contains. Next, it displays each of the unique words in the second file along with the number of times that that word occurs.
+
+	Internally, the program uses stdin to read in two strings from the user for two files. it then uses fstream to open the files. A while loop reads in the file word by word since the ">>" operator uses white space as a delimiter. The STL erase function is used with ::ispunct to remove punctuation from the string, and the transform function works with ::tolower to change all characters to lowercase characters. After these changes are made the word is added to the map, and if it exists then its value is incremented. Lastly, the size of the first map is displayed and the keys and values of the second map are iterated through.
+
+	The program was tested by first ensuring that the files loaded, and if they didn't then an error message was displayed. It was also tested with smaller files to make sure it found the unique words, and it was tested to make sure that the word count was correct.
+
+	For the translation preprocessor, the dictionaries should have enough words that the program can accurately determine the language, but it should not have every single possible word because it would slow the program down. 1000 words for each dictionary is enough that the majority of words will be found in the dictionary, but is not too many that the computer takes too long to process the information.
+
+	For puzzle.h, using possibility instead of using sets was more natural it was more intuitive to simply cycle through a 3D vector using for loops. while using sets achieves a very similar effect, it required more thought to plan out and implement.
