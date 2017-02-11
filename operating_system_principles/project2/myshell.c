@@ -147,7 +147,7 @@ int main (int argc, char *argv[]) {
                 continue;
             }
 
-            if (stringIsInt(words[0])) {
+            if (stringIsInt(words[0])) {        // argument is a number
                 temp = atoi(words[0]);
                 if (temp != 0) {                // if string could be converted to int
                     rc = kill(temp, SIGKILL);   // kill the process
@@ -160,10 +160,10 @@ int main (int argc, char *argv[]) {
                             fprintf(stderr, "myshell: kill error: %s\n", strerror(errno));
                         }
                     }
-                } else {
+                } else {        // argument is not a number
                     fprintf(stderr, "myshell: error: kill requires a proper PID\n");
                 }
-            } else {
+            } else {            // argument is a number
                 fprintf(stderr, "myshell: error: kill requires a proper PID\n");
             }
             
@@ -174,7 +174,7 @@ int main (int argc, char *argv[]) {
                 continue;
             }
 
-            if (stringIsInt(words[0])) {
+            if (stringIsInt(words[0])) {        // argument is a number
                 temp = atoi(words[0]);
                 if (temp != 0) {                // if string could be converted to int
                     rc = kill(temp, SIGSTOP);   // stop the process
@@ -187,10 +187,10 @@ int main (int argc, char *argv[]) {
                             fprintf(stderr, "myshell: stop error: %s\n", strerror(errno));
                         }
                     }
-                } else {
+                } else {        // argument is a number
                     fprintf(stderr, "myshell: stop error: stop requires a proper PID\n");
                 }
-            } else {
+            } else {            // argument is a number
                 fprintf(stderr, "myshell: stop error: stop requires a proper PID\n");
             }
 
@@ -201,7 +201,7 @@ int main (int argc, char *argv[]) {
                 continue;
             }
 
-            if (stringIsInt(words[0])) {
+            if (stringIsInt(words[0])) {        // argument is a number
                 temp = atoi(words[0]);
                 if (temp != 0) {                // if string could be converted to int
                     rc = kill(temp, SIGCONT);   // continue the process
@@ -214,10 +214,10 @@ int main (int argc, char *argv[]) {
                             fprintf(stderr, "myshell: continue error: %s\n", strerror(errno));
                         }
                     }
-                } else {
+                } else {        // argument is a number
                     fprintf(stderr, "myshell: continue error: continue requires a proper PID\n");
                 }
-            } else {
+            } else {            // argument is a number
                 fprintf(stderr, "myshell: continue error: continue requires a proper PID\n");
             }
 
