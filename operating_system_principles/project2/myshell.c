@@ -230,7 +230,8 @@ int main (int argc, char *argv[]) {
 int stringIsInt (char *c) {
     if (!*c) 
         return 0;
-    for (int i = 0; c[i] != NULL; i++) {
+    int i;
+    for (i = 0; c[i] != NULL; i++) {
         if (i == 0 && c[i] == '-') {}           // checks if number is negative
         else if (!isdigit(c[i])) {return 0;}    // checks if number
     }
