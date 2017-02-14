@@ -19,7 +19,7 @@ LSL X17, X20, 2      # Store i * 4 into X17
 ADD X17, X4, X17     # Calculate address of X[i]
 ADD X18, X15, X16    # A[B[i]] + C[B[i+4]] in X18
 
-STR X18, [X17]       # SStore result in X[i]
+STR X18, [X17]       # Store result in X[i]
 ```
 
 ##Question 2:  
