@@ -58,32 +58,46 @@ BREAK2: LSL  $t6, $j, 2      # Store j * 4
 
 ##Question 3:  
 ```
-COUNT:  ADD  X22, XZR, XZR   # int res = 0
-        ADD  X9, XZR, XZR    # int i = 0
+COUNT:  ADD   X22, XZR, XZR   # int res = 0
+        ADD   X9, XZR, XZR    # int i = 0
 
-LOOP:   LSL  X10, X22, 2     # Store i * 4
-        ADD  X10, X21, X10   # Calculate address of A[i]
-        LDR  X11, [X10]      # Load A[i] into X11
-        CMP  X19, X2         # Compare A[i] to X
-        B.NE SA              # If != jump to SA
-        ADD  X0, XZR, X22    # Load res into argument register
+LOOP:   LSL   X10, X22, 2     # Store i * 4
+        ADD   X10, X21, X10   # Calculate address of A[i]
+        LDR   X11, [X10]      # Load A[i] into X11
+        CMP   X19, X2         # Compare A[i] to X
+        B.NE  SA              # If != jump to SA
+        ADD   X0, XZR, X22    # Load res into argument register
 
-X:      BL   PLUS            # Call function plusPlus
-        ADD  X22, XZR, X2    # Reassign returned value to res
+X:      BL    PLUS            # Call function plusPlus
+        ADD   X22, XZR, X2    # Reassign returned value to res
 
-SA:     ADD  X9, XZR, 2      # Increment i by 2
-        CMP  X9, X19         # Compare i and n
-        B.GT LOOP            # If i > n, loop
+SA:     ADD   X9, XZR, 2      # Increment i by 2
+        CMP   X9, X19         # Compare i and n
+        B.GT  LOOP            # If i > n, loop
 
-PLUS:   ADD  X2, X1, 1       # i + 1
-        BR   X30             # PC = contents of X30
+PLUS:   ADD   X2, X1, 1       # i + 1
+        BR    X30             # PC = contents of X30
 ```
 
 ##Question 4 A:  
+```
+        SUB   X28, X28, 12
+        STR   X21, [X28, 8]
+        STR   X20, [X28, 4]
+        STR   X19, [X28]
+```
+These instructions would appear at the beginning of the function call.
 
 ##Question 4 B:  
+Registers X11 and X12 are saved to the stack. The assembly code below to restore the registers should be placed at the end of the function.  
+```
+        LDR   X11, [X28]
+        LDR   X12, [X28, 4]
+        ADD   X28, X28, 8
+```
 
 ##Question 4 C:  
+Arguments one through eight would be placed in registers X0 - X7, and then the ninth register will be placed on the stack.  
 
 ##Question 5 A:  
 ```
@@ -91,7 +105,7 @@ PLUS:   ADD  X2, X1, 1       # i + 1
         ADDGT   R20, R20, #5
         B.GE    DONE
         SUB     R20, R20, #5
-DONE:   ...
+DONE:   
 ```
 These instructions can help make the original code more efficient because instead of taking two instructions to jump to a branch and add the values, the action is consolidated into one instruction. The improvement would be more noticeable if the code were placed in a for loop which performs these actions multiple times.  
 
@@ -101,7 +115,7 @@ These instructions can help make the original code more efficient because instea
      B.LE   OUT
      CMP    X2, 20
      ADDLT  X2, X3, X4
-OUT: ...
+OUT: 
 ```
 (i) Arithmetic instructions that set condition codes would not be helpful since no arithmetic occurs until after the conditions need checked. The variables need compared before the arithmetic, so there is no benefit by using ADDS or SUBS here.  
 (ii) Instructions that are conditionally executed based on condition codes will improve the code because it can remove a jump instruction by adding an ADDLT. This combines a jump and an add instruction into one command which makes the code more efficient.  
