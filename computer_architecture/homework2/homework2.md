@@ -91,7 +91,7 @@ PLUS:   ADD   X2, X1, 1       # i + 1
 These instructions would appear at the beginning of the function call.
 
 ##Question 4 B:  
-Registers X11 and X12 are saved to the stack. The assembly code below to restore the registers should be placed at the end of the function.  
+Registers X11 and X12 are saved to the stack. The assembly code below to restore the registers should be placed right after the function is called in main.  
 ```
         LDR   X11, [X28]
         LDR   X12, [X28, 4]
