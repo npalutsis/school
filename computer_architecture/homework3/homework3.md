@@ -4,7 +4,7 @@
 
 ##Question 1 A:  
 The ALU is in an idle state in cycle #2. As a result, it is able to calculate the next PC value at this time instead of doing it in cycle #4.  
-It is not possible to calculate to calculate a possible result for an immediate add because it does not have access to the values of the numbers in cycle #2. IR[25:21] holds the memory address, and the value is loaded from the register during cycle #2. Consequently, it is not possible to calculate a result until cycle #3.  
+It is not possible to calculate to calculate a possible result for an add immediate because it does not have access to the values of the numbers in cycle #2. IR[25:21] holds the memory address, and the value is loaded from the register during cycle #2. Consequently, it is not possible to calculate a result until cycle #3.  
 If it were possible to calculate both a result and a target address in cycle 2 it would be more useful to use the add immediate instruction. This is because *addi* would be a more common instruction so it would achieve a larger performance gain.  
 
 ##Question 1 B:  
@@ -23,15 +23,22 @@ The mux for "write data" would need to be expanded to two bits to accommodate th
 | To ALU Input 2 Mux |      Don't Care      |
 
 ##Question 1 C:  
-Similar to part B, the mux for "write register" will need to be changed to support two bits instead of just one. X30 will be passed into this mux as an option to be passed to the write register. The ALUInput2 would also need to be 2-bit to allow a zero to be passed as an input for the ALU.  
+Similar to part B, the mux for "write register" will need to be changed to support two bits instead of just one. X30 will be passed into this mux as an option to be passed to the write register. The ALUInput2 would also need to be 3-bit to allow a zero to be passed as an input for the ALU so that PC is not incremented.  
 
 ##Question 1 D:  
-For this to happen bits 15-0 should be filled with 0. Then PC will go to the write register, and X30 in write data will restore PC to the specified location since `PC + 4` should have been loaded into X30 when `bl` was initially called. This instruction would only take 3 clock cycles: fetch instruction, decode instruction, and then complete the jump.
+For this to happen bits 15-0 should be filled with 0. Then PC will go to the write register, and X30 in write data will restore PC to the specified location since `PC + 4` should have been loaded into X30 when `bl` was initially called. This instruction would take 4 clock cycles because it behaves like a store instruction: fetch instruction, decode instruction, compute the memory address for PC, then write the value to X30.
 
 ##Question 1 E:  
-In order to accommodate 5 destination registers instead of 2, the data path would need to change to support this. Specifically, the mux for the write register would need to be updated to support 3 bits to provide the option to go to any of the registers.
+In order to accommodate 5 destination registers instead of 2, the data path would need to change to support this. Specifically, the mux for the write register would need to be updated to support 3 bits to provide the option to go to any of the registers. Fewer bit sequences are better because only one destination register can be written to at a time, and it also means that muxes need to be bigger and over complicates the data path.
 
 ##Question 1 F:  
+A 32-bit number is created by first reading in 16 bits to the immediate value and then padding it to the right with 16 0s. This right-padding is supported in the data path by adding a signal to the ALU Input 2 mux. This addition makes the mux 3-bit. A sign extend is also added to take in the 16 bits and add 16 0s to the right in order to return a 32-bit number.
+
+Add in box thing
+
+The FSM would need to change if the `lui` instruction was decoded as an I-type instruction. It would need to add a new state in cycle #3 such that `ALUsrcB = 100` and so that it transitions to the same state as a load instruction does in cycle #4.
+
+FSM
 
 ##Question 2:  
 ```
@@ -85,7 +92,7 @@ IC = 4.46519×10^9
 
 ##Question 3 B:  
 ```
-,700,200,000 * [x * 6.67 / 47.002
+4,700,200,000 * [x * 6.67 / 47.002
 		      + 8 * 2.59 / 47.002
 		      + 5 * 6.42 / 470.02
 		      + 7 * 3.71 / 4.7002] * 2e-9 = 66.5627

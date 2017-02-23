@@ -62,7 +62,7 @@ To further modify the code, another multiplexer should be added to increment the
 
 ![alt text][datapath]
 
-[datapath]: https://github.com/npalutsis/cse30321/blob/master/datapath.PNG "Modified Datapath"
+[datapath]: https://github.com/npalutsis/school/blob/master/computer_architecture/homework1/datapath.PNG "Modified Datapath"
 
 ##Question 3 B:  
 This instruction will take 4 clock cycles. The normal load instruction only undergoes 3 clock cycles because it must fetch, decode, and execute the instruction. However, LOAD++ must undergo a two-step execution process since it must choose between storing Rw and also iterating and storing Rp. This extra step that LOAD++ possesses over LOAD costs the CPU an extra clock cycle every time this instruction is called.
@@ -162,7 +162,7 @@ f(x) = 13 * ((N / x) -1) + 9x + 16
 ```
 ![alt text][graph1]
 
-[graph1]: https://github.com/npalutsis/cse30321/blob/master/graph1.PNG "Clock Cycle Graph"
+[graph1]: https://github.com/npalutsis/school/blob/master/computer_architecture/homework1/graph1.PNG "Clock Cycle Graph"
 
 ##Question 6 C: 
 ```
@@ -174,6 +174,6 @@ f(x) = 3x + 2 + (3N / x)
 ```
 ![alt text][graph2]
 
-[graph2]: https://github.com/npalutsis/cse30321/blob/master/graph2.PNG "Instruction Count Graph"
+[graph2]: https://github.com/npalutsis/school/blob/master/computer_architecture/homework1/graph2.PNG "Instruction Count Graph"
 
 The minimum positive value of the first graph is sqrt(65) * (100 / 3) which is approximately 268.7. The minimum positive value of the second graph is sqrt(5) * 100 which is approximately 223.6. The median value between these two points is about 246.15. In order to find a balance between the fewest number of clock cycles as in the first graph and the fewest number of instructions I would unroll the loop 246 times to try and maximize the performance. 
