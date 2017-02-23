@@ -34,11 +34,15 @@ In order to accommodate 5 destination registers instead of 2, the data path woul
 ##Question 1 F:  
 A 32-bit number is created by first reading in 16 bits to the immediate value and then padding it to the right with 16 0s. This right-padding is supported in the data path by adding a signal to the ALU Input 2 mux. This addition makes the mux 3-bit. A sign extend is also added to take in the 16 bits and add 16 0s to the right in order to return a 32-bit number.
 
-Add in box thing
+![alt text][mux]
+
+[mux]: https://github.com/npalutsis/school/blob/master/computer_architecture/homework3/mux.png "Modified Mux"
 
 The FSM would need to change if the `lui` instruction was decoded as an I-type instruction. It would need to add a new state in cycle #3 such that `ALUsrcB = 100` and so that it transitions to the same state as a load instruction does in cycle #4.
 
-FSM
+![alt text][FSM]
+
+[FSM]: https://github.com/npalutsis/school/blob/master/computer_architecture/homework1/datapath.PNG "Modified FSM"
 
 ##Question 2:  
 ```
