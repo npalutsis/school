@@ -42,7 +42,7 @@ The FSM would need to change if the `lui` instruction was decoded as an I-type i
 
 ![alt text][FSM]
 
-[FSM]: https://github.com/npalutsis/school/blob/master/computer_architecture/homework1/datapath.PNG "Modified FSM"
+[FSM]: https://github.com/npalutsis/school/blob/master/computer_architecture/homework3/FSM.png "Modified FSM"
 
 ##Question 2:  
 ```
