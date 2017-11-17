@@ -72,6 +72,7 @@ SELECT city, stabbr FROM zips order by rand() limit 1;
 
 ##Problem 5  
 *a.)*  
+
 | Action    | a  | b   | Mem A | Mem B | Disk A | Disk B |  
 |:----------|:--:|:---:|:-----:|:-----:|:------:|:------:|  
 | -         | -  | -   | -     | -     | 5      | 10     |  
