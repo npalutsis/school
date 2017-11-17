@@ -71,3 +71,50 @@ SELECT city, stabbr FROM zips order by rand() limit 1;
 *c.)* Yes, consistency is preserved. Even though the consistency is not preserved by `A = B + 1` in the middle of the transaction, it only matters if the consistency is preserved at the end. 'B = A + 1' restores the consistency since B must now be greater than A.  
 
 ##Problem 5  
+*a.)* | Action    | a  | b   | Mem A | Mem B | Disk A | Disk B |
+|-----------|----|-----|-------|-------|--------|--------|
+| -         | -  | -   | -     | -     | 5      | 10     |
+| INPUT(A)  | -  | -   | 5     | -     | 5      | 10     |
+| INPUT(B)  | -  | -   | 5     | 10    | 5      | 10     |
+| r(A, a)   | 5  | -   | 5     | 10    | 5      | 10     |
+| r(B, b)   | 5  | 10  | 5     | 10    | 5      | 10     |
+| a = a + b | 15 | 10  | 5     | 10    | 5      | 10     |
+| w(A, a)   | 15 | 10  | 15    | 10    | 5      | 10     |
+| b = a + b | 15 | 25  | 15    | 10    | 5      | 10     |
+| w(B, b)   | 15 | 25  | 15    | 25    | 5      | 10     |
+| OUTPUT(B) | 15 | 25  | 15    | 25    | 15     | 10     |
+| OUTPUT(A) | 15 | 25  | 15    | 25    | 15     | 25     |  
+
+Since B is output first, consistency is preserved even if a crash occurs in between outputs because A will still be less than B. This would not necessarily be the case if B were output after A.  
+
+*b.)* | Action    | a  | b   | Mem A | Mem B | Disk A | Disk B |
+|-----------|----|-----|-------|-------|--------|--------|
+| -         | -  | -   | -     | -     | 5      | 10     |
+| INPUT(B)  | -  | -   | -     | 10    | 5      | 10     |
+| INPUT(A)  | -  | -   | 5     | 10    | 5      | 10     |
+| r(B, b)   | -  | 10  | 5     | 10    | 5      | 10     |
+| r(A, a)   | 5  | 10  | 5     | 10    | 5      | 10     |
+| b = a + b | 5  | 15  | 5     | 10    | 5      | 10     |
+| w(B, b)   | 5  | 15  | 5     | 15    | 5      | 10     |
+| a = a + b | 20 | 15  | 5     | 15    | 5      | 10     |
+| w(A, a)   | 20 | 15  | 20    | 15    | 5      | 10     |
+| OUTPUT(B) | 20 | 15  | 20    | 15    | 5      | 15     |
+| OUTPUT(A) | 20 | 15  | 20    | 15    | 20     | 15     |  
+
+The output actions will not preserve the consistency since the transaction itself does not even preserve consistency.  
+
+*c.)* | Action    | a  | b  | Mem A | Mem B | Disk A | Disk B |
+|-----------|----|----|-------|-------|--------|--------|
+| -         | -  | -  | -     | -     | 5      | 10     |
+| INPUT(A)  | -  | -  | 5     | -     | 5      | 10     |
+| INPUT(B)  | -  | -  | 5     | 10    | 5      | 10     |
+| r(A, a)   | 5  | -  | 5     | 10    | 5      | 10     |
+| r(B, b)   | 5  | 10 | 5     | 10    | 5      | 10     |
+| a = b + 1 | 11 | 10 | 5     | 10    | 5      | 10     |
+| w(A, a)   | 11 | 10 | 11    | 10    | 5      | 10     |
+| b = a + 1 | 11 | 12 | 11    | 10    | 5      | 10     |
+| w(B, b)   | 11 | 12 | 11    | 12    | 5      | 10     |
+| OUTPUT(B) | 11 | 12 | 11    | 12    | 11     | 10     |
+| OUTPUT(A) | 11 | 12 | 11    | 12    | 11     | 12     |
+
+Since B is output first, consistency is preserved even if a crash occurs in between outputs because A will still be less than B. This would not necessarily be the case if B were output after A.  
