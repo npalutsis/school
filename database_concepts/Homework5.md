@@ -87,7 +87,8 @@ SELECT city, stabbr FROM zips order by rand() limit 1;
 | OUTPUT(B) | 15 | 25  | 15    | 25    | 15     | 10     |
 | OUTPUT(A) | 15 | 25  | 15    | 25    | 15     | 25     |
 
-*b.)*  
+*b.)* The output actions will not preserve the consistency since the transaction itself does not even preserve consistency.  
+
 | Action    | a  | b   | Mem A | Mem B | Disk A | Disk B |  
 |-----------|----|-----|-------|-------|--------|--------|  
 | -         | -  | -   | -     | -     | 5      | 10     |  
@@ -102,9 +103,8 @@ SELECT city, stabbr FROM zips order by rand() limit 1;
 | OUTPUT(B) | 20 | 15  | 20    | 15    | 5      | 15     |  
 | OUTPUT(A) | 20 | 15  | 20    | 15    | 20     | 15     |  
 
-The output actions will not preserve the consistency since the transaction itself does not even preserve consistency.  
+*c.)* Since B is output first, consistency is preserved even if a crash occurs in between outputs because A will still be less than B. This would not necessarily be the case if B were output after A.  
 
-*c.)*  
 | Action    | a  | b  | Mem A | Mem B | Disk A | Disk B |  
 |-----------|----|----|-------|-------|--------|--------|  
 | -         | -  | -  | -     | -     | 5      | 10     |  
@@ -118,5 +118,3 @@ The output actions will not preserve the consistency since the transaction itsel
 | w(B, b)   | 11 | 12 | 11    | 12    | 5      | 10     |  
 | OUTPUT(B) | 11 | 12 | 11    | 12    | 11     | 10     |  
 | OUTPUT(A) | 11 | 12 | 11    | 12    | 11     | 12     |
-
-Since B is output first, consistency is preserved even if a crash occurs in between outputs because A will still be less than B. This would not necessarily be the case if B were output after A.  
