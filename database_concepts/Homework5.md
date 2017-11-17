@@ -3,7 +3,8 @@ Homework 5
 **Name:** Nick Palutsis  
 **Date:** November 17, 2017  
 
-##Problem 1  
+Problem 1  
+---------
 
 **a.)** `SELECT COUNT(*) FROM zips;`  
 	There are 2,483,448 rows  
@@ -51,7 +52,8 @@ SELECT city, stabbr FROM zips order by rand() limit 1;
 **l.)** `SELECT COUNT(*) FROM zips WHERE city_idx > 'CAMP PENDLETON';`  
 	It took 0.68 seconds to return 2160120 results. L is faster than K since city_idx is an indexed column and city is not. Since most of the entries will fall into the 20,000-80,000 range, most of the entries will inevitably need to be checked which explains why the queries are somewhat close in execution time. However, K will still have to compare **every** entry since it is unindexed, while L only has to compare **most** entries.  
 
-##Problem 2  
+Problem 2  
+---------
 
 **a.)** `SELECT COUNT(*) FROM (SELECT zip FROM zips WHERE city_idx = 'CAMP PENDLETON' AND stabbr = 'CA' AND zip <= 99999) ZIP_CODES, (SELECT zip FROM industry_records) INDUSTRIES WHERE ZIP_CODES.zip = INDUSTRIES.zip;`  
 	It took 2.75 seconds to return 61 results.  
@@ -61,11 +63,13 @@ SELECT city, stabbr FROM zips order by rand() limit 1;
 
 **c.)** B performed the query faster than A because even though I am using the city_idx for both queries, only B uses an indexed column. Since the two tables are being joined, A is limited by `industry_records` which is not using an indexed zip code column. Using an indexed column allows the database to join the centries faster since it can more efficiently look up the entries that need joined.  
 
-##Problem 3  
+Problem 3  
+---------
 
 *Refer to the drawing on the last page*
 
-##Problem 4  
+Problem 4  
+---------
 
 **a.)** Yes, consistency is preserved. Even though the consistency is not preserved by `A = A + B` in the middle of the transaction, it only matters if the consistency is preserved at the end. 'B = A + B' restores the consistency since B must now be greater than A.  
 
@@ -73,7 +77,8 @@ SELECT city, stabbr FROM zips order by rand() limit 1;
 
 **c.)** Yes, consistency is preserved. Even though the consistency is not preserved by `A = B + 1` in the middle of the transaction, it only matters if the consistency is preserved at the end. 'B = A + 1' restores the consistency since B must now be greater than A.  
 
-##Problem 5  
+Problem 5  
+---------
 **a.)** Since B is output first, consistency is preserved even if a crash occurs in between outputs because A will still be less than B. This would not necessarily be the case if B were output after A.  
 
 | Action    | a  | b   | Mem A | Mem B | Disk A | Disk B |
