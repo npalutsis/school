@@ -73,19 +73,19 @@ SELECT city, stabbr FROM zips order by rand() limit 1;
 ##Problem 5  
 *a.)*  
 
-| Action    | a  | b   | Mem A | Mem B | Disk A | Disk B |  
-|:----------|:--:|:---:|:-----:|:-----:|:------:|:------:|  
-| -         | -  | -   | -     | -     | 5      | 10     |  
-| INPUT(A)  | -  | -   | 5     | -     | 5      | 10     |  
-| INPUT(B)  | -  | -   | 5     | 10    | 5      | 10     |  
-| r(A, a)   | 5  | -   | 5     | 10    | 5      | 10     |  
-| r(B, b)   | 5  | 10  | 5     | 10    | 5      | 10     |  
-| a = a + b | 15 | 10  | 5     | 10    | 5      | 10     |  
-| w(A, a)   | 15 | 10  | 15    | 10    | 5      | 10     |  
-| b = a + b | 15 | 25  | 15    | 10    | 5      | 10     |  
-| w(B, b)   | 15 | 25  | 15    | 25    | 5      | 10     |  
-| OUTPUT(B) | 15 | 25  | 15    | 25    | 15     | 10     |  
-| OUTPUT(A) | 15 | 25  | 15    | 25    | 15     | 25     |  
+| Action    | a  | b   | Mem A | Mem B | Disk A | Disk B |
+|:----------|:--:|:---:|:-----:|:-----:|:------:|:------:|
+| -         | -  | -   | -     | -     | 5      | 10     |
+| INPUT(A)  | -  | -   | 5     | -     | 5      | 10     |
+| INPUT(B)  | -  | -   | 5     | 10    | 5      | 10     |
+| r(A, a)   | 5  | -   | 5     | 10    | 5      | 10     |
+| r(B, b)   | 5  | 10  | 5     | 10    | 5      | 10     |
+| a = a + b | 15 | 10  | 5     | 10    | 5      | 10     |
+| w(A, a)   | 15 | 10  | 15    | 10    | 5      | 10     |
+| b = a + b | 15 | 25  | 15    | 10    | 5      | 10     |
+| w(B, b)   | 15 | 25  | 15    | 25    | 5      | 10     |
+| OUTPUT(B) | 15 | 25  | 15    | 25    | 15     | 10     |
+| OUTPUT(A) | 15 | 25  | 15    | 25    | 15     | 25     |
 
 Since B is output first, consistency is preserved even if a crash occurs in between outputs because A will still be less than B. This would not necessarily be the case if B were output after A.  
 
