@@ -71,7 +71,8 @@ SELECT city, stabbr FROM zips order by rand() limit 1;
 *c.)* Yes, consistency is preserved. Even though the consistency is not preserved by `A = B + 1` in the middle of the transaction, it only matters if the consistency is preserved at the end. 'B = A + 1' restores the consistency since B must now be greater than A.  
 
 ##Problem 5  
-*a.)* | Action    | a  | b   | Mem A | Mem B | Disk A | Disk B |
+*a.)*  
+| Action    | a  | b   | Mem A | Mem B | Disk A | Disk B |
 |-----------|----|-----|-------|-------|--------|--------|
 | -         | -  | -   | -     | -     | 5      | 10     |
 | INPUT(A)  | -  | -   | 5     | -     | 5      | 10     |
@@ -87,7 +88,8 @@ SELECT city, stabbr FROM zips order by rand() limit 1;
 
 Since B is output first, consistency is preserved even if a crash occurs in between outputs because A will still be less than B. This would not necessarily be the case if B were output after A.  
 
-*b.)* | Action    | a  | b   | Mem A | Mem B | Disk A | Disk B |
+*b.)*  
+| Action    | a  | b   | Mem A | Mem B | Disk A | Disk B |
 |-----------|----|-----|-------|-------|--------|--------|
 | -         | -  | -   | -     | -     | 5      | 10     |
 | INPUT(B)  | -  | -   | -     | 10    | 5      | 10     |
@@ -103,7 +105,8 @@ Since B is output first, consistency is preserved even if a crash occurs in betw
 
 The output actions will not preserve the consistency since the transaction itself does not even preserve consistency.  
 
-*c.)* | Action    | a  | b  | Mem A | Mem B | Disk A | Disk B |
+*c.)*  
+| Action    | a  | b  | Mem A | Mem B | Disk A | Disk B |
 |-----------|----|----|-------|-------|--------|--------|
 | -         | -  | -  | -     | -     | 5      | 10     |
 | INPUT(A)  | -  | -  | 5     | -     | 5      | 10     |
