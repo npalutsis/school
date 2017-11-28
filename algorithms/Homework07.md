@@ -1,6 +1,6 @@
 Homework 7
 ==========
-**Name:** Nick Palutsis
+**Name:** Nick Palutsis  
 **Date:** 28 November 2017
 
 Problem 1
@@ -8,52 +8,52 @@ Problem 1
 My algorithm is based off of the greedy Dijkstra algorithm to find the single-source shortest path of a graph since the graph uses non-negative weights. Each vertex in the graph will store the shortest distance to reach that particular node from the origin node. Initially, this value for all of the nodes will be set to infinity. The distance value of the origin will be set to zero. Each vertex will also store a pointer to the previous vertex in the path, but it will initially be set to NULL. Each vertex will also store a boolean to keep track of whether the vertex has been visited. This is initially false. My algorithm will visit the unvisited vertex with the lowest distance value, v, and mark it as visited. Then, for each neighboring vertex, n, the minimum between n’s current value and the sum of v.distance and the weight of the edge between v and n. If a new value is stored, then a pointer to v is stored on n. This is repeated until the final vertex is visited or a path cannot be found. If a path is found, then the distance is printed out, the path is printed out, and the vertices are returned.
 
 ```
-shortestPath(G, s, f):						# graph, start, finish
-	for v in G:
-		vertices[v].distance = INFINITY		# set distances to infinity
-		vertices[v].previous = NULL			# set pointer to previous vertex
-		vertices[v].visited = False			# set vertices to unvisited
+shortestPath(G, s, f):                      # graph, start, finish
+    for v in G:
+        vertices[v].distance = INFINITY     # set distances to infinity
+        vertices[v].previous = NULL         # set pointer to previous vertex
+        vertices[v].visited = False         # set vertices to unvisited
 
-	vertices[s].distance = 0
+    vertices[s].distance = 0
 
-	while True:
-		current = NULL
-		# find shortest unvisited vertex
-		for v in G:
-			if vertices[v].visited == False:
-				if current == NULL:
-					current = vertices[v]
-				if vertices[v].distance < current.distance:
-					current = vertices[v]
+    while True:
+        current = NULL
+        # find shortest unvisited vertex
+        for v in G:
+            if vertices[v].visited == False:
+                if current == NULL:
+                    current = vertices[v]
+                if vertices[v].distance < current.distance:
+                    current = vertices[v]
 
-		if current == NULL:
-			break							# all vertices have been visited
+        if current == NULL:
+            break                           # all vertices have been visited
 
-		if current.distance == INFINITY:	# all connected vertices have been visited
-			return "No path found"
+        if current.distance == INFINITY:    # all connected vertices have been visited
+            return "No path found"
 
-		current.visited = True				# mark as visited
+        current.visited = True              # mark as visited
 
-		for n in current:					# for each neighbor of current, compute smallest dist
-			if vertices[n].distance > current.distance + w(current, n):
-				vertices[n].distance = current.distance + w(current, n)
-				vertices[n].previous = n
+        for n in current:                   # for each neighbor of current, compute smallest dist
+            if vertices[n].distance > current.distance + w(current, n):
+                vertices[n].distance = current.distance + w(current, n)
+                vertices[n].previous = n
 
-		if current == vertices[f]:
-			break
+        if current == vertices[f]:
+            break
 
-	print("The total distance is: " + vertices[f].distance)
-	print("The shortest path is: ")
-	current = f
-	while True:
-		print(current)
-		if current.previous != NULL:
-			current = current.previous
-			print(", ")
-		elif:
-			break
+    print("The total distance is: " + vertices[f].distance)
+    print("The shortest path is: ")
+    current = f
+    while True:
+        print(current)
+        if current.previous != NULL:
+            current = current.previous
+            print(", ")
+        elif:
+            break
 
-	return vertices
+    return vertices
 ```
 
 My algorithm runs in `O(V^2)` complexity. This is because it takes `O(V)` to initialize the values of the graph. Identifying the smallest unvisited vertex takes `O(V)` since it checks each vertex once. Computing the new distances for the neighboring nodes takes `O(E)` complexity since at most each edge will be visited once. All of this happens at most `V` times which adds another `O(V)` complexity. Overall, the complexity is `O(V^2 + E)` which simplifies to `O(V^2)`.  
@@ -66,31 +66,31 @@ My algorithm uses Dijkstra's algorithm in order to compute the single-source sho
 
 ```
 newSST(G, SST, s, u, v):
-	# I am assuming G is the graph with the new edge already added
-	# G has a set of vertices V and a set of edges E
-	# SST is the generated tree before the new edge was added
-	# s is the source for the tree
-	# u and v are the vertices that make up the new edge
+    # I am assuming G is the graph with the new edge already added
+    # G has a set of vertices V and a set of edges E
+    # SST is the generated tree before the new edge was added
+    # s is the source for the tree
+    # u and v are the vertices that make up the new edge
 
-	for each v in V:						# initialize all vertices to unvisited
-		v.visited = false
+    for each v in V:                        # initialize all vertices to unvisited
+        v.visited = false
 
-	current = u
-	while current != s:						# visit all ancestors of u
-		u.visited = True
-		current = current.parent
-	s.visited = true 						# visit s
+    current = u
+    while current != s:                     # visit all ancestors of u
+        u.visited = True
+        current = current.parent
+    s.visited = true                        # visit s
 
-	current = v
-	while current.visited != True:			# find LCD of u and v
-		subgraph.insert(current)
-		current = current.parent
-	subgraph.insert(current)				# current is the LCD
+    current = v
+    while current.visited != True:          # find LCD of u and v
+        subgraph.insert(current)
+        current = current.parent
+    subgraph.insert(current)                # current is the LCD
 
-	newSST = Dijkstra(subgraph, current)	# create new subtree
-	SST.replaceSubtree(newSST)				# replace subtree from LCD
+    newSST = Dijkstra(subgraph, current)    # create new subtree
+    SST.replaceSubtree(newSST)              # replace subtree from LCD
 
-	return SST 								# return new tree with new edge
+    return SST                              # return new tree with new edge
 ```  
 
 The overall complexity of my algorithm is `O(ElogV)`. This is because initializing the values, visiting the ancestors of u, and finding the lowest common ancestor of *u* and *v* is `O(V)` since each vertice is visited at most once. Performing Dijkstra's takes `O(ElogV)` since it is performed on all of the vertices in the worst case. For the worst case, it appears no faster than simply running Dijkstra's algorithm again. However, the best and average case will be faster since it will not run the algorithm over the entire graph.  
@@ -103,57 +103,57 @@ My algorithm is based on the observation that adding one edge to a minimum spann
 
 ```
 newMCST(G, T, u, v):
-	# I am assuming G is the graph with the new edge already added
-	# G has a set of vertices V and a set of edges E
-	# T is the generated tree with the new edge was added
-	# u and v are the vertices that make up the new edge
-	# path is an empty stack to record the path
+    # I am assuming G is the graph with the new edge already added
+    # G has a set of vertices V and a set of edges E
+    # T is the generated tree with the new edge was added
+    # u and v are the vertices that make up the new edge
+    # path is an empty stack to record the path
 
-	for v in V:
-		v.visited = False
+    for v in V:
+        v.visited = False
 
-	for e in E:
-		e.visited = False
+    for e in E:
+        e.visited = False
 
-	DFS(T)							# traverses to add path for cycle
+    DFS(T)                          # traverses to add path for cycle
 
-	start = path.top()				# first vertice in cycle
-	source = NULL
+    start = path.top()              # first vertice in cycle
+    source = NULL
 
-	while True:
-		source = path.top()
-		path.pop()
-		target = path.top()
+    while True:
+        source = path.top()
+        path.pop()
+        target = path.top()
 
-		cycle.insert((source, target))		# cycle is array to hold cycle edges
-		source = target
+        cycle.insert((source, target))      # cycle is array to hold cycle edges
+        source = target
 
-		if source == start:
-			break
+        if source == start:
+            break
 
-	maxEdge = cycle[0]
-	for e in cycle:
-		if e.weight > maxEdge.weight:
-			maxEdge = e
+    maxEdge = cycle[0]
+    for e in cycle:
+        if e.weight > maxEdge.weight:
+            maxEdge = e
 
-	T.deleteEdge(maxEdge)
+    T.deleteEdge(maxEdge)
 
-	return T
+    return T
 
 DFS(T, s):
-	# tree t with root node s
+    # tree t with root node s
 
-	s.visited = True
-	path.push(s)
+    s.visited = True
+    path.push(s)
 
-	for e in s:						# for all adjacent vertices to s
-		if e.target.visted == False && e.visited == False:
-			e.visited = True
-			if DFS(T, e.target) == -1:
-				return -1
-		elif e.target.visited == True && e.visited == False:
-			path.push(e.target)
-			return -1				# cycle detected, break from function
+    for e in s:                     # for all adjacent vertices to s
+        if e.target.visted == False && e.visited == False:
+            e.visited = True
+            if DFS(T, e.target) == -1:
+                return -1
+        elif e.target.visited == True && e.visited == False:
+            path.push(e.target)
+            return -1               # cycle detected, break from function
 ```  
 
 The overall complexity of my algorithm is `O(V + E)`. This is because initializing the graph is `O(V)` for the vertices and `O(E)` for the edges. DFS takes `O(V + E)` complexity since it visits at most each vertex and each edge. Finding the largest edge contained in the cycle also only takes `O(E)`, and deleting the edge is constant.  
@@ -166,42 +166,42 @@ My algorithm is based off of Prim's algorithm to find the minimum spanning tree.
 
 ```
 maxProductTree(G):
-	# I am assuming G is the graph with V vertices and E edges
+    # I am assuming G is the graph with V vertices and E edges
 
-	for v1 in V:									# fill adj matrix with zeros
-		for v2 in V:
-			adjMatrix[v1][v2] = 0
+    for v1 in V:                                    # fill adj matrix with zeros
+        for v2 in V:
+            adjMatrix[v1][v2] = 0
 
-	visited.insert(V[0])
-	product = V[0]
+    visited.insert(V[0])
+    product = V[0]
 
-	while |visited| != |V|:
-		maxEdge = NULL
+    while |visited| != |V|:
+        maxEdge = NULL
 
-		for v in visited:							# check all visited nodes
-			for e in v.adjacent: 					# check edges for node
+        for v in visited:                           # check all visited nodes
+            for e in v.adjacent:                    # check edges for node
 
-				if (e.target is not in visited &&	# ensure adj is unvisited
-					e.weight != 0:					# ensure weight is not zero
-					if (maxEdge is NULL ||
-						e.weight > maxEdge):		# ensure edge is max
-						maxEdge = e
+                if (e.target is not in visited &&   # ensure adj is unvisited
+                    e.weight != 0:                  # ensure weight is not zero
+                    if (maxEdge is NULL ||
+                        e.weight > maxEdge):        # ensure edge is max
+                        maxEdge = e
 
-				elif e.target is not in visited:	# include zero weights
-					if (maxEdge is NULL ||
-						e.weight > maxEdge):		# ensure edge is max
-						maxEdge = e
+                elif e.target is not in visited:    # include zero weights
+                    if (maxEdge is NULL ||
+                        e.weight > maxEdge):        # ensure edge is max
+                        maxEdge = e
 
-				else:
-					return "No tree could be made."
+                else:
+                    return "No tree could be made."
 
-		visited.insert(maxEdge.target)
-		adjMatrix[maxEdge.source][maxEdge.target] = 1
-		adjMatrix[maxEdge.target][maxEdge.source] = 1
-		product *= maxEdge.weight
+        visited.insert(maxEdge.target)
+        adjMatrix[maxEdge.source][maxEdge.target] = 1
+        adjMatrix[maxEdge.target][maxEdge.source] = 1
+        product *= maxEdge.weight
 
-	print("A tree with weight " + product + " was found.")
-	return adjMatrix
+    print("A tree with weight " + product + " was found.")
+    return adjMatrix
 ```  
 
 The overall complexity of my algorithm is `O(V^2*E)`. This is because it takes `O(V^2)` to initialize the adjacency matrix. The while loop itself is `O(V)` complexity since it increases the visited nodes by one each time. Looping through the vertices and adjacent edges takes `O(V)` and `O(E)` respectively. Calculating the product and modifying the matrix each time is constant.  
