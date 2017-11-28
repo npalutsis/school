@@ -162,6 +162,48 @@ My algorithm is correct because of the property that all trees have one less edg
 
 Problem 4
 ---------  
-My algorithm is based off of Prim's algorithm to find the minimum spanning tree.
+My algorithm is based off of Prim's algorithm to find the minimum spanning tree. It will utilize a set *visited* that will contain all of the visited vertices. An adjacency matrix that is initially filled with zeros for the tree stores the tree. First, all edges with the weight zero will be removed from the graph since we are maximizing the product of the tree. Then, an arbitrary vertex will be added to *visited*. For each vertex in *visited*, all of the edges to unvisited, adjacent vertices will be compared. The edge with the largest weight will be added to *visited*, the total product will be multiplied by its weight, and the corresponding values in the adjacency matrix will be set to 1. These steps will be repeated for the tree until `|visited| = |V|`. If there are no unvisited vertices available and `|visited| != |V|`, then a tree is not possible without including zeros. Add the edges with weight zero back to the graph. Check again for unvisited adjacent vertices to complete the tree. If it is not possible, then return an error. Otherwise, return the tree.  
 
-Treat it similar to a minimum spanning tree: max, multiplication, remove zeros, no cycles
+```
+maxProductTree(G):
+	# I am assuming G is the graph with V vertices and E edges
+
+	for v1 in V:									# fill adj matrix with zeros
+		for v2 in V:
+			adjMatrix[v1][v2] = 0
+
+	visited.insert(V[0])
+	product = V[0]
+
+	while |visited| != |V|:
+		maxEdge = NULL
+
+		for v in visited:							# check all visited nodes
+			for e in v.adjacent: 					# check edges for node
+
+				if (e.target is not in visited &&	# ensure adj is unvisited
+					e.weight != 0:					# ensure weight is not zero
+					if (maxEdge is NULL ||
+						e.weight > maxEdge):		# ensure edge is max
+						maxEdge = e
+
+				elif e.target is not in visited:	# include zero weights
+					if (maxEdge is NULL ||
+						e.weight > maxEdge):		# ensure edge is max
+						maxEdge = e
+
+				else:
+					return "No tree could be made."
+
+		visited.insert(maxEdge.target)
+		adjMatrix[maxEdge.source][maxEdge.target] = 1
+		adjMatrix[maxEdge.target][maxEdge.source] = 1
+		product *= maxEdge.weight
+
+	print("A tree with weight " + product + " was found.")
+	return adjMatrix
+```  
+
+The overall complexity of my algorithm is `O(V^2*E)`. This is because it takes `O(V^2)` to initialize the adjacency matrix. The while loop itself is `O(V)` complexity since it increases the visited nodes by one each time. Looping through the vertices and adjacent edges takes `O(V)` and `O(E)` respectively. Calculating the product and modifying the matrix each time is constant.  
+
+My algorithm works because it consistently chooses the largest unvisited edge. In a similar way to how Prim's minimizes the tree, this will maximize the tree. Eliminating edges of weight zero also maximizes the product since an edge weight of zero would minimize the tree product to zero. However, these edges are included when it is impossible to construct a tree at all without them. By only visiting the unvisited nodes, it is guarunteed that there will be no cycles as well.
